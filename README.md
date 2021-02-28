@@ -14,7 +14,7 @@ La aplicación MOCKI permite a los usuarios:
 Ayudar a los programadores a estudiar para entrevistas de trabajo en compañías FAANG.
  
 ## Gama de colores a utilizar.
-A
+![Alt text](https://github.com/itcolegas/DispMoviles/blob/main/images/Palette.png?raw=true "Palette")
 
 ## Funcionalidades
 A
