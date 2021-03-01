@@ -2,13 +2,7 @@
 Proyectos de desarrollo para dispositivos móviles.
 
 ## Descripción
-La aplicación MOCKI permite a los usuarios:
-- Tener una colección de problemas con explicación y hints.
-- Visualizar consejos para las entrevistas.
-- Revisar links de Leetcode dependiendo de la compañía.
-- Realizar entrevistas de prueba.
-- Recibir retroalimentación por su trabajo.
-- Llevar un progreso.
+En las entrevistas de trabajo, se le pide a los entrevistados, entre otras cosas, resolver problemas de código. Estos problemas pueden ser de muchos tipos. Varían en dificultad y en el tipo de estructura de dato y/o algoritmo que se tienen que utilizar para resolverlos. Es importante que los estudiantes que van a tener entrevistas estudien estos problemas para así estar lo más preparados posible para cualquier problema que se les pudiera presentar. Con nuestra aplicación para celular, los estudiantes podrán estudiar para sus entrevistas de una forma más organizada y eficiente. A través de la resolución de los problemas planteados en la aplicación y de la realización de entrevistas de prueba, los estudiantes podrán tener muchas más posibilidades de obtener el puesto que desean.
 
 ## Objetivo
 Ayudar a los programadores a estudiar para entrevistas de trabajo en compañías FAANG.
@@ -17,7 +11,13 @@ Ayudar a los programadores a estudiar para entrevistas de trabajo en compañías
 ![Alt text](https://github.com/itcolegas/DispMoviles/blob/main/images/Palette.png?raw=true "Palette")
 
 ## Funcionalidades
-A
+La aplicación MOCKI permite a los usuarios:
+- Consultar una colección de problemas de programación, que abarcan diversos algoritmos y estructuras de datos, que incluyen explicaciones y pistas de cómo se deben resolver.
+- Visualizar consejos para las entrevistas de trabajo.
+- Acceder a links de Leetcode que preparan al estudiante para entrevistas de empresas específicas.
+- Realizar entrevistas de prueba.
+- Recibir retroalimentación por su trabajo.
+- Llevar un progreso de su estudio de problemas.
 
 ## Diseño
 ![Alt text](https://github.com/itcolegas/DispMoviles/blob/main/images/1.png?raw=true "1")
