@@ -30,6 +30,13 @@ La aplicación MOCKI permite a los usuarios:
 
 
 ## Identificación de elementos a utilizar.
-A
+- Button
+- Text
+- Image
+- TextInput
+- ScrollView
+- StyleSheet
+- MenuCarousel
+- React Native Chart Kit 
 
 
