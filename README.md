@@ -24,9 +24,8 @@ La aplicación MOCKI permite a los usuarios:
 ![Alt text](https://github.com/itcolegas/DispMoviles/blob/main/images/2.png?raw=true "2")
 
 
-## Crear logo![image](https://user-images.githubusercontent.com/31292773/109427664-0bdee600-79b9-11eb-8fb9-e3efded6a75a.png)
-
-![Alt text](https://github.com/itcolegas/DispMoviles/blob/main/images/mocki-logoV.png?raw=true "mocki-logoV")
+## Crear logo
+![image](https://user-images.githubusercontent.com/31292773/109427664-0bdee600-79b9-11eb-8fb9-e3efded6a75a.png)
 
 
 ## Identificación de elementos a utilizar.
