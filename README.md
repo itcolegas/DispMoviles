@@ -39,4 +39,14 @@ La aplicación MOCKI permite a los usuarios:
 - MenuCarousel
 - React Native Chart Kit 
 
+# Project RoadMap
 
+- [ ] Mercury
+- [x] Venus
+- [x] Earth (Orbit/Moon)
+- [x] Mars
+- [ ] Jupiter
+- [ ] Saturn
+- [ ] Uranus
+- [ ] Neptune
+- [ ] Comet Haley
