@@ -81,5 +81,5 @@ La aplicación MOCKI permite a los usuarios:
 - Delivery 5: *Week 7*
 - Delivery 6: *Week 8*
 
-
+By ITColegas ®
 
