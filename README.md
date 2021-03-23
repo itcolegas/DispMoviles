@@ -40,12 +40,46 @@ La aplicación MOCKI permite a los usuarios:
 
 # Project RoadMap
 
-- [ ] Mercury
-- [x] Venus
-- [x] Earth (Orbit/Moon)
-- [x] Mars
-- [ ] Jupiter
-- [ ] Saturn
-- [ ] Uranus
-- [ ] Neptune
-- [ ] Comet Haley
+## Web Components
+- [ ] SignIn / LogIn: **Octavio**
+- [ ] Option Selector: **Rubén**
+- [ ] Image Option Selctor: **Cristopher**
+- [ ] Button: **Martin**
+- [ ] Menu Grid: **Martin**
+- [ ] Progress Graph: **Cristopher**
+- [ ] Problem View: **Sabrina**
+- [ ] Problem Slider: **Sabrina**
+- [ ] Dropdown Hints: **Cristopher**
+- [ ] Problem Gif Container: **Sabrina**
+- [ ] Header: **Martin**
+- [ ] Back Button: **Octavio**
+- [ ] Burger Button: **Rubén**
+- [ ] Side Menu: **Rubén**
+- [ ] Profile Viewer: **Octavio**
+
+### Dates
+
+| Component | Delivery Date |
+| ------------- | ------------- |
+| SignIn / LogIn | Delivery 5 |
+| Option Selector | Delivery 4 |
+| Image Option Selctor | Delivery 4 |
+| Button | Delivery 4 |
+| Menu Grid | Delivery 6 |
+| Progress Graph |  Delivery 6 |
+| Problem View | Delivery 5 |
+| Problem Slider | Delivery 6 |
+| Dropdown Hints | Delivery 5 |
+| Problem Gif Container | Delivery 4 |
+| Header | Delivery 5 |
+| Back Button | Delivery 4 |
+| Burger Button | Delivery 5 |
+| Side Menu | Delivery 6 |
+| Profile Viewer | Delivery 6 |
+
+- Delivery 4: *Week 6*
+- Delivery 5: *Week 7*
+- Delivery 6: *Week 8*
+
+By ITColegas ®
+
