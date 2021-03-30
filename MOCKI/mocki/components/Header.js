@@ -8,7 +8,7 @@ export const Header = (props) => {
         <Ionicons name="menu-outline" size={30} color="white"
           style={styles.icon}/>
         <Image 
-          source={require('./assets/mocki-logoV.png')}
+          source={require('../assets/mocki-logoV.png')}
           style={styles.image}
         />
         <AntDesign name="user" size={30} color="white"
