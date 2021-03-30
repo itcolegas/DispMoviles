@@ -80,7 +80,7 @@ const SignUp = () => {
 
         <Text
           style={styles.info}>
-          ¿Ya tienes una cuenta?  <a href="./SignIn">Entrar</a>
+          ¿Ya tienes una cuenta? {/* <a href="./SignIn">Entrar</a> */}
         </Text>
 
       </View>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#454145',
   },
   formContainer:{
-    textColor: 'white',
+    color: 'white',
     marginBottom: 32,
     marginTop: 32,
     marginLeft: 25,

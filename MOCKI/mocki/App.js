@@ -10,8 +10,8 @@ export default function App() {
   return (
     <>
     <Header/>
-    <Menu/>
-    {/*<SignUp/>*/}
+    {/*<Menu/>*/}
+    <SignUp/>
     </>
   );
 }
