@@ -14,6 +14,7 @@ import FirstScreen from './layouts/authenticationFlow/FirstScreen';
 import LogIn from './layouts/authenticationFlow/LogIn';
 import MailForm from './layouts/authenticationFlow/MailForm';
 import UserAndPswdForm from './layouts/authenticationFlow/UserAndPswdForm';
+import Tips from './layouts/Tips';
 
 export default function App(){
   const Stack = createStackNavigator();
@@ -57,6 +58,30 @@ export default function App(){
             name='LogIn'
             title=""
             component={LogIn}
+            options={{
+              title: '',
+              headerStyle:{
+                backgroundColor: 'black',
+              },
+              headerTintColor: 'white',
+            }}
+           />
+           <Stack.Screen
+            name='Menu'
+            title=""
+            component={Menu}
+            options={{
+              title: '',
+              headerStyle:{
+                backgroundColor: 'black',
+              },
+              headerTintColor: 'white',
+            }}
+           />
+           <Stack.Screen
+            name='Tips'
+            title=""
+            component={Tips}
             options={{
               title: '',
               headerStyle:{

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Button, Dimensions } from 'react-native';
 
 import CardsCarousel from '../components/CardsCarousel';
 
-export default function Menu() {
+export default function Menu({navigation}) {
     const [username, setUserName] = useState('Ruben');
     return (
         <View style={styles.menu}>
@@ -16,6 +16,7 @@ export default function Menu() {
             </View>
             <View style={styles.carouselContainer}>
                 <Text style={styles.carouselText}>Content</Text>
+                <Button title="Interview tips"  onPress={() => navigation.navigate('Tips')}/>
                 <CardsCarousel/>
             </View>
             <View style={styles.carouselContainer}>

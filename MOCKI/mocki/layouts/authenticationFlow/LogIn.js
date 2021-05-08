@@ -21,7 +21,7 @@ const LogIn = ({route, navigation}) => {
   const {control, handleSubmit, formState: { errors } } = useForm()
   ;
   const onSubmit = (data) => {
-    console.log();
+    navigation.navigate('Menu')
   };
 
   return(
