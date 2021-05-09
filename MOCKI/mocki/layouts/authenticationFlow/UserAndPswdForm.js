@@ -24,11 +24,12 @@ const UserAndPswdForm = ({route, navigation}) => {
   const {control, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
-    const userProfile = {...data, ...route.params}
+    const userProfile = {...data, ...route.params};
     console.log(userProfile);
-    firebase.auth().onAuthStateChanged(user => {
-      console.log(user);
-    })
+    firebase.auth().createUserWithEmailAndPassword(userProfile.email, userProfile.password)
+     .then(() => {
+       console.log('User account created & signed in!');
+     });
   };
 
   return(

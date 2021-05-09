@@ -1,7 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Header } from './components/Header';
+
+//firebase
+import firebase from './utils/Firebase';
+import 'firebase/auth';
 
 //para navegación
 import { NavigationContainer } from '@react-navigation/native';
@@ -20,104 +24,115 @@ import Progress from './layouts/Progress';
 
 export default function App(){
   const Stack = createStackNavigator();
-  return (
-    <>
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  firebase.auth().onAuthStateChanged((user) => {
+    user ? setIsSignedIn(true) : null;
+  });
+
+  return(
       <NavigationContainer theme={DarkTheme}>
         <Stack.Navigator>
-          <Stack.Screen
-             name='FirstScreen'
-             component={FirstScreen}
-             options={{
-               title:'',
-               headerShown: false,
-             }}
-           />
-           <Stack.Screen
-            name='MailForm'
-            title=""
-            component={MailForm}
-            options={{
-              title: '',
-              headerStyle:{
-                backgroundColor: 'black',
-              },
-              headerTintColor: 'white',
-            }}
-           />
-           <Stack.Screen
-            name='UserAndPswdForm'
-            title=""
-            component={UserAndPswdForm}
-            options={{
-              title: '',
-              headerStyle:{
-                backgroundColor: 'black',
-              },
-              headerTintColor: 'white',
-            }}
-           />
-           <Stack.Screen
-            name='LogIn'
-            title=""
-            component={LogIn}
-            options={{
-              title: '',
-              headerStyle:{
-                backgroundColor: 'black',
-              },
-              headerTintColor: 'white',
-            }}
-           />
-           <Stack.Screen
-            name='Menu'
-            title=""
-            component={Menu}
-            options={{
-              title: '',
-              headerStyle:{
-                backgroundColor: 'black',
-              },
-              headerTintColor: 'white',
-            }}
-           />
-           <Stack.Screen
-            name='Tips'
-            title=""
-            component={Tips}
-            options={{
-              title: '',
-              headerStyle:{
-                backgroundColor: 'black',
-              },
-              headerTintColor: 'white',
-            }}
-           />
-           <Stack.Screen
-            name='Tip'
-            title=""
-            component={Tip}
-            options={{
-              title: '',
-              headerStyle:{
-                backgroundColor: 'black',
-              },
-              headerTintColor: 'white',
-            }}
-           />
-           <Stack.Screen
-            name='Progress'
-            title=""
-            component={Progress}
-            options={{
-              title: '',
-              headerStyle:{
-                backgroundColor: 'black',
-              },
-              headerTintColor: 'white',
-            }}
-           />
+          {!isSignedIn ? (
+            <>
+              <Stack.Screen
+                 name='FirstScreen'
+                 component={FirstScreen}
+                 options={{
+                   title:'',
+                   headerShown: false,
+                 }}
+               />
+               <Stack.Screen
+                name='MailForm'
+                title=""
+                component={MailForm}
+                options={{
+                  title: '',
+                  headerStyle:{
+                    backgroundColor: 'black',
+                  },
+                  headerTintColor: 'white',
+                }}
+               />
+               <Stack.Screen
+                name='UserAndPswdForm'
+                title=""
+                component={UserAndPswdForm}
+                options={{
+                  title: '',
+                  headerStyle:{
+                    backgroundColor: 'black',
+                  },
+                  headerTintColor: 'white',
+                }}
+               />
+               <Stack.Screen
+                name='LogIn'
+                title=""
+                component={LogIn}
+                options={{
+                  title: '',
+                  headerStyle:{
+                    backgroundColor: 'black',
+                  },
+                  headerTintColor: 'white',
+                }}
+               />
+             </>
+           ) : (
+             <>
+               <Stack.Screen
+                name='Menu'
+                title=""
+                component={Menu}
+                options={{
+                  title: '',
+                  headerStyle:{
+                    backgroundColor: 'black',
+                  },
+                  headerTintColor: 'white',
+                }}
+               />
+               <Stack.Screen
+                name='Tips'
+                title=""
+                component={Tips}
+                options={{
+                  title: '',
+                  headerStyle:{
+                    backgroundColor: 'black',
+                  },
+                  headerTintColor: 'white',
+                }}
+               />
+               <Stack.Screen
+                name='Tip'
+                title=""
+                component={Tip}
+                options={{
+                  title: '',
+                  headerStyle:{
+                    backgroundColor: 'black',
+                  },
+                  headerTintColor: 'white',
+                }}
+               />
+               <Stack.Screen
+                name='Progress'
+                title=""
+                component={Progress}
+                options={{
+                  title: '',
+                  headerStyle:{
+                    backgroundColor: 'black',
+                  },
+                  headerTintColor: 'white',
+                }}
+               />
+             </>
+           )}
         </Stack.Navigator>
      </NavigationContainer>
-    </>
   );
 }

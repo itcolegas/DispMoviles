@@ -2,6 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React,  { useState } from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
+//firebase
+import firebase from '../../utils/Firebase';
+import 'firebase/auth';
+
 //para Formularios
 import { useForm, Controller } from "react-hook-form";
 
@@ -21,7 +25,10 @@ const LogIn = ({route, navigation}) => {
   const {control, handleSubmit, formState: { errors } } = useForm()
   ;
   const onSubmit = (data) => {
-    navigation.navigate('Menu')
+    firebase.auth().signInWithEmailAndPassword(data.email, data.password)
+     .then(() => {
+       console.log('User account signed in!');
+     });
   };
 
   return(
@@ -37,15 +44,15 @@ const LogIn = ({route, navigation}) => {
           control={control}
           render={({ field: { onChange, onBlur, value }}) => (
             <FormBox
-              icon="user"
+              icon="envelope"
               tag="Correo electrónico"
-              placeholder={errors.user ? "Campo requerido" : "john@gmail.com"}
+              placeholder={errors.email ? "Campo requerido" : "john@gmail.com"}
               onChangeText={value => onChange(value)}
               defaultValue={value}
-              error = {errors.user}
+              error = {errors.email}
             />
           )}
-          name="user"
+          name="email"
           rules={{ required: true }}
         />
         <Controller
