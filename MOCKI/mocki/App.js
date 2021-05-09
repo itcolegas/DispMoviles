@@ -15,6 +15,7 @@ import LogIn from './layouts/authenticationFlow/LogIn';
 import MailForm from './layouts/authenticationFlow/MailForm';
 import UserAndPswdForm from './layouts/authenticationFlow/UserAndPswdForm';
 import Tips from './layouts/Tips';
+import Progress from './layouts/Progress';
 
 export default function App(){
   const Stack = createStackNavigator();
@@ -82,6 +83,18 @@ export default function App(){
             name='Tips'
             title=""
             component={Tips}
+            options={{
+              title: '',
+              headerStyle:{
+                backgroundColor: 'black',
+              },
+              headerTintColor: 'white',
+            }}
+           />
+           <Stack.Screen
+            name='Progress'
+            title=""
+            component={Progress}
             options={{
               title: '',
               headerStyle:{
