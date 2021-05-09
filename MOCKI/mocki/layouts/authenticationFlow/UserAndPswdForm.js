@@ -2,6 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React,  { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+//firebase
+import firebase from '../../utils/Firebase';
+import 'firebase/auth';
+
 //para formularios
 import { useForm, Controller } from "react-hook-form";
 
@@ -22,6 +26,9 @@ const UserAndPswdForm = ({route, navigation}) => {
   const onSubmit = (data) => {
     const userProfile = {...data, ...route.params}
     console.log(userProfile);
+    firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
+    })
   };
 
   return(
