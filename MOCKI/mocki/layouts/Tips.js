@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Button, Alert, TouchableOpacity, Image, TextInput, Dimensions } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-export default function Tips() {
+export default function Tips({navigation}) {
 
     const [opc, setOpc] = React.useState("");
     const [image, setImage] = useState(null);
@@ -32,17 +32,17 @@ export default function Tips() {
             </View>
             <View style={styles.buttonsContainer}>
 
-                <AppButton title="Prepare for my interview"  onPress={() => Alert.alert('You chose the Prepare button')}/>
+                <AppButton title="Prepare for my interview"  onPress={() => navigation.navigate('Tip',{title: 'Prepare for my interview'})}/>
                 
-                <AppButton title="Ask about the input"  onPress={() => Alert.alert('You chose the Input button')}/>
+                <AppButton title="Ask about the input"  onPress={() => navigation.navigate('Tip',{title: 'Ask about the input'})}/>
                 
-                <AppButton title="Always communicate"  onPress={() => Alert.alert('You chose the Communicate button')}/>
+                <AppButton title="Always communicate"  onPress={() => navigation.navigate('Tip',{title: 'Always communicate'})}/>
                 
-                <AppButton title="First impressions"  onPress={() => Alert.alert('First impressions')}/>
+                <AppButton title="First impressions"  onPress={() => navigation.navigate('Tip',{title: 'First impressions'})}/>
 
-                <AppButton title="Body language"  onPress={() => Alert.alert('You chose the Body language button')}/>
+                <AppButton title="Body language"  onPress={() => navigation.navigate('Tip',{title: 'Body language'})}/>
 
-                <AppButton title="Previous Successes"  onPress={() => Alert.alert('You chose the Successes button')}/>
+                <AppButton title="Previous Successes"  onPress={() => navigation.navigate('Tip',{title: 'Previous Successes'})}/>
                 
             </View>
         </View>

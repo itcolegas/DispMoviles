@@ -15,6 +15,7 @@ import LogIn from './layouts/authenticationFlow/LogIn';
 import MailForm from './layouts/authenticationFlow/MailForm';
 import UserAndPswdForm from './layouts/authenticationFlow/UserAndPswdForm';
 import Tips from './layouts/Tips';
+import Tip from './layouts/Tip';
 import Progress from './layouts/Progress';
 
 export default function App(){
@@ -83,6 +84,18 @@ export default function App(){
             name='Tips'
             title=""
             component={Tips}
+            options={{
+              title: '',
+              headerStyle:{
+                backgroundColor: 'black',
+              },
+              headerTintColor: 'white',
+            }}
+           />
+           <Stack.Screen
+            name='Tip'
+            title=""
+            component={Tip}
             options={{
               title: '',
               headerStyle:{
