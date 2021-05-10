@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button} from 'react-native';
 import { Header } from './components/Header';
+import { Ionicons, AntDesign } from '@expo/vector-icons'; 
 
 //firebase
 import firebase from './utils/Firebase';
@@ -21,6 +22,7 @@ import UserAndPswdForm from './layouts/authenticationFlow/UserAndPswdForm';
 import Tips from './layouts/Tips';
 import Tip from './layouts/Tip';
 import Progress from './layouts/Progress';
+import Options from './layouts/Options';
 
 export default function App(){
   const Stack = createStackNavigator();
@@ -86,13 +88,17 @@ export default function App(){
                 name='Menu'
                 title=""
                 component={Menu}
-                options={{
+                options={({navigation})=>({
                   title: '',
                   headerStyle:{
                     backgroundColor: 'black',
                   },
                   headerTintColor: 'white',
-                }}
+                  headerRight: () =>(
+                    <AntDesign name="user" size={30} color="white"
+                      style={styles.icon} onPress={()=>navigation.navigate('Options')}/>
+                  ),
+                })}
                />
                <Stack.Screen
                 name='Tips'
@@ -130,9 +136,27 @@ export default function App(){
                   headerTintColor: 'white',
                 }}
                />
+               <Stack.Screen
+                name='Options'
+                title=""
+                component={Options}
+                options={{
+                  title: '',
+                  headerStyle:{
+                    backgroundColor: 'black',
+                  },
+                  headerTintColor: 'white',
+                }}
+               />
              </>
            )}
         </Stack.Navigator>
      </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  icon:{
+    padding: 10
+  },
+});
