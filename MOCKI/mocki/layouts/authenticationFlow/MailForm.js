@@ -2,6 +2,15 @@ import { StatusBar } from 'expo-status-bar';
 import React  from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 
+//firebase
+import firebase from 'firebase';
+
+//expo
+import { ResponseType } from 'expo-auth-session';
+
+//google auth
+import * as Google from 'expo-auth-session/providers/google';
+
 //para formulario
 import { useForm, Controller } from "react-hook-form";
 
@@ -18,6 +27,21 @@ import authStyles from './Authentication.style.js';
 const MailForm = ({navigation}) => {
 
   const {control, handleSubmit, formState: { errors } } = useForm();
+
+  const [request, response, promptAsync] = Google.useIdTokenAuthRequest(
+    {
+      clientId: '374522304776-m7dtulsej4dtrniu090ighcm3d6kgcoc.apps.googleusercontent.com',
+      },
+  );
+
+  React.useEffect(() => {
+    if (response?.type === 'success') {
+     const { id_token } = response.params;
+
+     const credential = firebase.auth.GoogleAuthProvider.credential(id_token);
+     firebase.auth().signInWithCredential(credential);
+   }
+  });
 
   const onSubmit = (data) => {
     navigation.navigate('UserAndPswdForm', data);
@@ -60,7 +84,7 @@ const MailForm = ({navigation}) => {
 
       <View style={styles.serviceButtonContainer}>
         <CustomButton
-          title="Log in with Facebook"
+          title="Crear cuenta con Facebook"
           paddingVertical={20}
           marginBottom={35}
           onPress={console.log()}
@@ -68,9 +92,9 @@ const MailForm = ({navigation}) => {
           backgroundColor="#3B5998"
         />
         <CustomButton
-          title="Log in with Google"
+          title="Crear cuenta con Google"
           paddingVertical={20}
-          onPress={console.log()}
+          onPress={() => promptAsync()}
           icon="google"
           backgroundColor="#DB4A39"
         />
