@@ -1,22 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Button, Alert, TouchableOpacity, Image, TextInput, Dimensions } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {
+    LineChart,
+    BarChart,
+    PieChart,
+    ProgressChart,
+    ContributionGraph,
+    StackedBarChart
+  } from "react-native-chart-kit";
 
 export default function Progress() {
-
-    const [opc, setOpc] = React.useState("");
-    const [image, setImage] = useState(null);
+    const onPress = () => console.log('Pressed');
 
     img_vector = require('../assets/mocki-logoV.png')
     
 
     TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
-
-    const AppButton = ({ onPress, title }) => (
-    <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
-        <Text style={styles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
-    );
 
       return (
 
@@ -28,23 +28,76 @@ export default function Progress() {
                 />
             </View>
             <View style={styles.titleContainer}>
-                <Text style={styles.titleText}>Interview tips</Text>
+                <Text style={styles.titleText}>My progress</Text>
             </View>
-            <View style={styles.buttonsContainer}>
+            <View style={styles.graphContainer}>
+                <LineChart
+                    data={{
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"],
+                    datasets: [
+                        {
+                        data: [
+                            1,
+                            2,
+                            4,
+                            4,
+                            5,
+                            7
+                        ]
+                        }
+                    ]
+                    }}
+                    width={wp('90%')} // from react-native
+                    height={hp('30%')}
+                    
+                    yAxisInterval={1} // optional, defaults to 1
+                    chartConfig={{
+                        //backgroundColor: "#e26a00",
+                        //backgroundGradientFrom: "#fb8c00",
+                        //backgroundGradientTo: "#ffa726",
+                        decimalPlaces: 0, // optional, defaults to 2dp
+                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        style: {
+                            borderRadius: 16
+                        },
+                        propsForDots: {
+                            r: "6",
+                            strokeWidth: "2",
+                            stroke: "green"
+                        }
+                    }}
+                    bezier
+                    style={{
+                        marginVertical: 8,
+                        borderRadius: 16
+                    }}
+                />
+                </View>
+                <View style={styles.graphContainer}>
+                    <ProgressChart
+                        data={{
+                            //labels: ["Progress"],
+                            data: [0.7]
+                        }}
+                        width={wp('60%')} // from react-native
+                        height={hp('20%')}
+                        
+                        strokeWidth={8}
+                        radius={40}
+                        hideLegend={false}
 
-                <AppButton title="Prepare for my interview"  onPress={() => Alert.alert('You chose the Prepare button')}/>
-                
-                <AppButton title="Ask about the input"  onPress={() => Alert.alert('You chose the Input button')}/>
-                
-                <AppButton title="Always communicate"  onPress={() => Alert.alert('You chose the Communicate button')}/>
-                
-                <AppButton title="First impressions"  onPress={() => Alert.alert('First impressions')}/>
-
-                <AppButton title="Body language"  onPress={() => Alert.alert('You chose the Body language button')}/>
-
-                <AppButton title="Previous Successes"  onPress={() => Alert.alert('You chose the Successes button')}/>
-                
-            </View>
+                        chartConfig={{
+                            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        }}
+                    />
+                </View>
+                <View style={styles.buttonContainer}>
+                <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
+                    <Text style={styles.appButtonText}>SEND BY MAIL</Text>
+                </TouchableOpacity>
+                </View>
         </View>
 
     )
@@ -56,43 +109,48 @@ const styles = StyleSheet.create({
     menu: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#2A2C2C',
+        backgroundColor: 'black',
         alignItems: 'center',
         padding: 20,
         overflow: 'scroll'
     },
     imageContainer: {
-        height: hp('10%'),
+        height: hp('8%'),
         justifyContent: 'center',
         alignItems: 'center'
       },
     titleContainer:{
-        padding: 5
+        paddingBottom: 20
+    },
+    buttonContainer:{
+        paddingBottom: 20
+    },
+    graphContainer:{
+        paddingTop: 10,
+        paddingBottom: 10
     },
     buttonsContainer:{
         alignItems: 'center',
         flex: 1,
         padding: 60,
         justifyContent: 'space-between'
-        
-
-    },
-    appButtonContainer: {
-        backgroundColor: "#F7F9F9",
-        borderRadius: 5,
-        paddingVertical: 10,
-        paddingHorizontal: 12,
-        width: 250
-    },
-      appButtonText: {
-        fontSize: 18,
-        color: "#7E8080",
-        fontWeight: "bold",
-        alignSelf: "center",
     },
     titleText:{
         paddingTop: 40,
         fontSize: 30,
         color: 'white'
-    }
+    },
+    appButtonContainer: {
+        backgroundColor: "#08DD16",
+        borderRadius: 5,
+        paddingVertical: 10,
+        paddingHorizontal: 12,
+        width: 250
+    },
+    appButtonText: {
+        fontSize: 18,
+        color: "white",
+        fontWeight: "bold",
+        alignSelf: "center",
+    },
   });
