@@ -8,6 +8,8 @@ export default function Tips({navigation}) {
     const [image, setImage] = useState(null);
 
     img_vector = require('../assets/mocki-logoV.png')
+
+    const body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit.'
     
 
     TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
@@ -32,17 +34,17 @@ export default function Tips({navigation}) {
             </View>
             <View style={styles.buttonsContainer}>
 
-                <AppButton title="Prepare for my interview"  onPress={() => navigation.navigate('Tip',{title: 'Prepare for my interview'})}/>
+                <AppButton title="Prepare for my interview"  onPress={() => navigation.navigate('Tip',{title: 'Prepare for my interview', body: body})}/>
                 
-                <AppButton title="Ask about the input"  onPress={() => navigation.navigate('Tip',{title: 'Ask about the input'})}/>
+                <AppButton title="Ask about the input"  onPress={() => navigation.navigate('Tip',{title: 'Ask about the input', body: body})}/>
                 
-                <AppButton title="Always communicate"  onPress={() => navigation.navigate('Tip',{title: 'Always communicate'})}/>
+                <AppButton title="Always communicate"  onPress={() => navigation.navigate('Tip',{title: 'Always communicate', body: body})}/>
                 
-                <AppButton title="First impressions"  onPress={() => navigation.navigate('Tip',{title: 'First impressions'})}/>
+                <AppButton title="First impressions"  onPress={() => navigation.navigate('Tip',{title: 'First impressions', body: body})}/>
 
-                <AppButton title="Body language"  onPress={() => navigation.navigate('Tip',{title: 'Body language'})}/>
+                <AppButton title="Body language"  onPress={() => navigation.navigate('Tip',{title: 'Body language', body: body})}/>
 
-                <AppButton title="Previous Successes"  onPress={() => navigation.navigate('Tip',{title: 'Previous Successes'})}/>
+                <AppButton title="Previous Successes"  onPress={() => navigation.navigate('Tip',{title: 'Previous Successes', body: body})}/>
                 
             </View>
         </View>

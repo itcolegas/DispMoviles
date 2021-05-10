@@ -6,7 +6,7 @@ export default function Tip({route,navigation}) {
 
     const [opc, setOpc] = React.useState("");
     const [image, setImage] = useState(null);
-    const { title } = route.params;
+    const { title, body } = route.params;
 
     img_vector = require('../assets/mocki-logoV.png')
   
@@ -28,6 +28,9 @@ export default function Tip({route,navigation}) {
                 style={{ width: 300, height: 300}}
                 />
             </View>
+            <View style={styles.bodyContainer}>
+            <Text style={styles.textBody}>{body}</Text>
+            </View>
         </View>
 
     )
@@ -48,16 +51,26 @@ const styles = StyleSheet.create({
         alignItems: 'center'
       },
       imageContainerLow: {
-        height: hp('50%'),
+        height: hp('40%'),
         justifyContent: 'center',
         alignItems: 'center'
       },
     titleContainer:{
         padding: 5
     },
+    bodyContainer:{
+        padding: 5,
+        marginLeft: 40,
+        marginRight: 40
+    },
     titleText:{
         color: 'white',
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: "bold"
+    },
+    textBody:{
+        color: 'white',
+        fontSize: 22,
+        textAlign: 'justify'
     }
   });
