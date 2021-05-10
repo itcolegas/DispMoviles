@@ -1,14 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Button, Alert, TouchableOpacity, Image, TextInput, Dimensions } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {
-    LineChart,
-    BarChart,
-    PieChart,
-    ProgressChart,
-    ContributionGraph,
-    StackedBarChart
-  } from "react-native-chart-kit";
+import LineGraph from '../components/LineGraph';
+import ProgressGraph from '../components/ProgressGraph';
 
 export default function Progress() {
     const onPress = () => console.log('Pressed');
@@ -31,67 +25,10 @@ export default function Progress() {
                 <Text style={styles.titleText}>My progress</Text>
             </View>
             <View style={styles.graphContainer}>
-                <LineChart
-                    data={{
-                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"],
-                    datasets: [
-                        {
-                        data: [
-                            1,
-                            2,
-                            4,
-                            4,
-                            5,
-                            7
-                        ]
-                        }
-                    ]
-                    }}
-                    width={wp('90%')} // from react-native
-                    height={hp('30%')}
-                    
-                    yAxisInterval={1} // optional, defaults to 1
-                    chartConfig={{
-                        //backgroundColor: "#e26a00",
-                        //backgroundGradientFrom: "#fb8c00",
-                        //backgroundGradientTo: "#ffa726",
-                        decimalPlaces: 0, // optional, defaults to 2dp
-                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                        style: {
-                            borderRadius: 16
-                        },
-                        propsForDots: {
-                            r: "6",
-                            strokeWidth: "2",
-                            stroke: "green"
-                        }
-                    }}
-                    bezier
-                    style={{
-                        marginVertical: 8,
-                        borderRadius: 16
-                    }}
-                />
-                </View>
+                <LineGraph/>
+            </View>
                 <View style={styles.graphContainer}>
-                    <ProgressChart
-                        data={{
-                            //labels: ["Progress"],
-                            data: [0.7]
-                        }}
-                        width={wp('60%')} // from react-native
-                        height={hp('20%')}
-                        
-                        strokeWidth={8}
-                        radius={40}
-                        hideLegend={false}
-
-                        chartConfig={{
-                            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                        }}
-                    />
+                    <ProgressGraph/>
                 </View>
                 <View style={styles.buttonContainer}>
                 <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
