@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 import { Header } from './components/Header';
-import { Ionicons, AntDesign } from '@expo/vector-icons'; 
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 
 //firebase
 import firebase from './utils/Firebase';
@@ -29,7 +29,7 @@ export default function App(){
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   firebase.auth().onAuthStateChanged((user) => {
-    user ? setIsSignedIn(true) : null;
+    user ? setIsSignedIn(true) : setIsSignedIn(false);
   });
 
   return(

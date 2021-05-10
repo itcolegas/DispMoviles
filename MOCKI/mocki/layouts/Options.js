@@ -1,18 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Button, Alert, TouchableOpacity, Image, TextInput, Dimensions } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
+//firebase
 import firebase from '../utils/Firebase';
+import 'firebase/auth';
 
 export default function Options({navigation}) {
     img_vector = require('../assets/mocki-logoV.png');
 
     function signOut(){
-        
-        //navigation.navigate('LogIn');
-        
-       console.log(firebase.auth().currentUser.displayName);
-    } 
-    
+      firebase.auth().signOut()
+      .then(() => console.log('User signed out!'));
+    }
+
 
     TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
 
@@ -29,7 +30,7 @@ export default function Options({navigation}) {
                 <Text style={styles.titleText}>Options</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Menu')} style={styles.appButtonContainer}>
+                <TouchableOpacity onPress={() => signOut()} style={styles.appButtonContainer}>
                     <Text style={styles.appButtonText}>Logout</Text>
                 </TouchableOpacity>
             </View>
