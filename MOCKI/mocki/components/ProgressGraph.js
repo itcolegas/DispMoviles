@@ -4,19 +4,18 @@ import {
     ProgressChart,
   } from "react-native-chart-kit";
 
-  export default function ProgressGraph(){
+  export default function ProgressGraph(props){
     return (
         <ProgressChart
             data={{
-                //labels: ["Progress"],
-                data: [0.7]
+                data: props.data
             }}
             width={wp('60%')} // from react-native
             height={hp('20%')}
             
             strokeWidth={8}
             radius={40}
-            hideLegend={false}
+            hideLegend={props.hideLegend}
 
             chartConfig={{
                 color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,

@@ -4,30 +4,23 @@ import {
     LineChart,
   } from "react-native-chart-kit";
 
-export default function LineGraph(){
+export default function LineGraph(props){
+
+    console.log(props.labels)
     return (
         <LineChart
             data={{
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"],
+            labels: props.labels,
             datasets: [
-                {
-                data: [
-                    1,
-                    2,
-                    4,
-                    4,
-                    5,
-                    7
-                ]
-                }
+                { data: props.data }
             ]
             }}
-            width={wp('90%')} // from react-native
+            width={wp('90%')}
             height={hp('30%')}
             
-            yAxisInterval={1} // optional, defaults to 1
+            yAxisInterval={1}
             chartConfig={{
-                decimalPlaces: 0, // optional, defaults to 2dp
+                decimalPlaces: 0,
                 color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                 labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                 style: {

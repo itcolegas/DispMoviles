@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     menu: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#2A2C2C',
+        backgroundColor: 'black',
         alignItems: 'center',
         padding: 20,
         overflow: 'scroll'

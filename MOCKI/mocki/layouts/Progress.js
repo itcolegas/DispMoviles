@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, Button, Alert, TouchableOpacity, Image, TextInput, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert, TouchableOpacity, Image } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import LineGraph from '../components/LineGraph';
 import ProgressGraph from '../components/ProgressGraph';
 
 export default function Progress() {
-    const onPress = () => console.log('Pressed');
+    const onPress = () => alert('Sent');
 
     img_vector = require('../assets/mocki-logoV.png')
     
@@ -25,10 +25,11 @@ export default function Progress() {
                 <Text style={styles.titleText}>My progress</Text>
             </View>
             <View style={styles.graphContainer}>
-                <LineGraph/>
+                <LineGraph labels={["Jan", "Feb", "Mar", "Apr", "May", "June"]}
+                    data={[1, 2, 4, 4, 5, 7]}/>
             </View>
                 <View style={styles.graphContainer}>
-                    <ProgressGraph/>
+                    <ProgressGraph data={[0.7]} hideLegend={false}/>
                 </View>
                 <View style={styles.buttonContainer}>
                 <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
