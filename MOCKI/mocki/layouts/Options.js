@@ -7,7 +7,7 @@ import firebase from '../utils/Firebase';
 import 'firebase/auth';
 
 export default function Options({navigation}) {
-    img_vector = require('../assets/mocki-logoV.png');
+    const img_vector = require('../assets/mocki-logoV.png');
 
     function signOut(){
       firebase.auth().signOut()
