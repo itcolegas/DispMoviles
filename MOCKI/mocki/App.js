@@ -1,8 +1,9 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
-import { Header } from "./components/Header";
-import { Ionicons, AntDesign } from "@expo/vector-icons";
+import { StatusBar } from 'expo-status-bar';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Button, Image} from 'react-native';
+import { Header } from './components/Header';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
+
 
 //firebase
 import firebase from "./utils/Firebase";
@@ -34,6 +35,7 @@ export default function App() {
   firebase.auth().onAuthStateChanged((user) => {
     user ? setIsSignedIn(true) : setIsSignedIn(false);
   });
+
 
   return (
     <NavigationContainer theme={DarkTheme}>
@@ -187,4 +189,9 @@ const styles = StyleSheet.create({
     height: 75,
     resizeMode: "contain",
   },
+  image:{
+    width: 115,
+    height: 75,
+    resizeMode: 'contain'
+  }
 });
