@@ -13,7 +13,7 @@ import authStyles from './Authentication.style.js';
 
 
 const FirstScreen = ({navigation}) => {
-  img_vector = require('../../assets/first_screen_image.png')
+  const img_vector = require('../../assets/first_screen_image.png')
   return (
     <View style={authStyles.viewContainer}>
 

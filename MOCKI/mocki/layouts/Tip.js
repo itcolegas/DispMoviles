@@ -8,7 +8,7 @@ export default function Tip({route,navigation}) {
     const [image, setImage] = useState(null);
     const { title, body } = route.params;
 
-    img_vector = require('../assets/mocki-logoV.png')
+    const img_vector = require('../assets/mocki-logoV.png')
   
       return (
 
