@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, Image} from 'react-native';
 import { Header } from './components/Header';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
@@ -27,6 +27,8 @@ import Options from './layouts/Options';
 export default function App(){
   const Stack = createStackNavigator();
   const [isSignedIn, setIsSignedIn] = useState(false);
+
+  img_vector = require('./assets/mocki-logoV.png');
 
   firebase.auth().onAuthStateChanged((user) => {
     user ? setIsSignedIn(true) : setIsSignedIn(false);
@@ -93,6 +95,11 @@ export default function App(){
                   headerStyle:{
                     backgroundColor: 'black',
                   },
+                  headerTitle: () =>(
+                    <Image style={styles.image}
+                      source={img_vector}
+                    />
+                  ),
                   headerTintColor: 'white',
                   headerRight: () =>(
                     <AntDesign name="user" size={30} color="white"
@@ -159,4 +166,9 @@ const styles = StyleSheet.create({
   icon:{
     padding: 10
   },
+  image:{
+    width: 115,
+    height: 75,
+    resizeMode: 'contain'
+  }
 });
