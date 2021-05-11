@@ -7,7 +7,7 @@ import ProgressGraph from '../components/ProgressGraph';
 export default function Progress() {
     const onPress = () => console.log('Pressed');
 
-    img_vector = require('../assets/mocki-logoV.png')
+    const img_vector = require('../assets/mocki-logoV.png')
     
 
     TouchableOpacity.defaultProps = { activeOpacity: 0.8 };

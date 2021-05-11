@@ -18,6 +18,7 @@ export default function Menu({navigation}) {
                 <Text style={styles.carouselText}>Content</Text>
                 <Button title="Interview tips"  onPress={() => navigation.navigate('Tips')}/>
                 <Button title="Progress"  onPress={() => navigation.navigate('Progress')}/>
+                <Button title="Mock Interview"  onPress={() => navigation.navigate('MockInterview')}/>
                 <CardsCarousel/>
             </View>
             <View style={styles.carouselContainer}>

@@ -7,7 +7,7 @@ export default function Tips({navigation}) {
     const [opc, setOpc] = React.useState("");
     const [image, setImage] = useState(null);
 
-    img_vector = require('../assets/mocki-logoV.png')
+    const img_vector = require('../assets/mocki-logoV.png')
 
     const body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit.'
     
