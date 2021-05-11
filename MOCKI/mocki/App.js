@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { Header } from "./components/Header";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 
@@ -29,6 +29,8 @@ export default function App() {
   const Stack = createStackNavigator();
   const [isSignedIn, setIsSignedIn] = useState(false);
 
+  const img_vector = require("./assets/mocki-logoV.png");
+
   firebase.auth().onAuthStateChanged((user) => {
     user ? setIsSignedIn(true) : setIsSignedIn(false);
   });
@@ -36,89 +38,141 @@ export default function App() {
   return (
     <NavigationContainer theme={DarkTheme}>
       <Stack.Navigator>
-        <>
-          <Stack.Screen
-            name="Menu"
-            title=""
-            component={Menu}
-            options={({ navigation }) => ({
-              title: "",
-              headerStyle: {
-                backgroundColor: "black",
-              },
-              headerTintColor: "white",
-              headerRight: () => (
-                <AntDesign
-                  name="user"
-                  size={30}
-                  color="white"
-                  style={styles.icon}
-                  onPress={() => navigation.navigate("Options")}
-                />
-              ),
-            })}
-          />
-          <Stack.Screen
-            name="Tips"
-            title=""
-            component={Tips}
-            options={{
-              title: "",
-              headerStyle: {
-                backgroundColor: "black",
-              },
-              headerTintColor: "white",
-            }}
-          />
-          <Stack.Screen
-            name="Tip"
-            title=""
-            component={Tip}
-            options={{
-              title: "",
-              headerStyle: {
-                backgroundColor: "black",
-              },
-              headerTintColor: "white",
-            }}
-          />
-          <Stack.Screen
-            name="Progress"
-            title=""
-            component={Progress}
-            options={{
-              title: "",
-              headerStyle: {
-                backgroundColor: "black",
-              },
-              headerTintColor: "white",
-            }}
-          />
-          <Stack.Screen
-            name="Options"
-            title=""
-            component={Options}
-            options={{
-              title: "",
-              headerStyle: {
-                backgroundColor: "black",
-              },
-              headerTintColor: "white",
-            }}
-          />
-          <Stack.Screen
-            name="MockInterview"
-            title=""
-            component={MockInterview}
-            options={{
-              title: "",
-              headerStyle: {
-                backgroundColor: "black",
-              },
-              headerTintColor: "white",
-            }}
-          />
-        </>
+        {!isSignedIn ? (
+          <>
+            <Stack.Screen
+              name="FirstScreen"
+              component={FirstScreen}
+              options={{
+                title: "",
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="MailForm"
+              title=""
+              component={MailForm}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="UserAndPswdForm"
+              title=""
+              component={UserAndPswdForm}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="LogIn"
+              title=""
+              component={LogIn}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="Menu"
+              title=""
+              component={Menu}
+              options={({ navigation }) => ({
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTitle: () => (
+                  <Image style={styles.image} source={img_vector} />
+                ),
+                headerTintColor: "white",
+                headerRight: () => (
+                  <AntDesign
+                    name="user"
+                    size={30}
+                    color="white"
+                    style={styles.icon}
+                    onPress={() => navigation.navigate("Options")}
+                  />
+                ),
+              })}
+            />
+            <Stack.Screen
+              name="Tips"
+              title=""
+              component={Tips}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="Tip"
+              title=""
+              component={Tip}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="Progress"
+              title=""
+              component={Progress}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="Options"
+              title=""
+              component={Options}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="MockInterview"
+              title=""
+              component={MockInterview}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -127,5 +181,10 @@ export default function App() {
 const styles = StyleSheet.create({
   icon: {
     padding: 10,
+  },
+  image: {
+    width: 115,
+    height: 75,
+    resizeMode: "contain",
   },
 });
