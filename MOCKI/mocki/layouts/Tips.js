@@ -1,11 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, Button, Alert, TouchableOpacity, Image, TextInput, Dimensions } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export default function Tips({navigation}) {
-
-    const [opc, setOpc] = React.useState("");
-    const [image, setImage] = useState(null);
 
     const img_vector = require('../assets/mocki-logoV.png')
 

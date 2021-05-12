@@ -1,11 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, Button, Alert, TouchableOpacity, Image, TextInput, Dimensions } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import React from 'react';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export default function Tip({route,navigation}) {
 
-    const [opc, setOpc] = React.useState("");
-    const [image, setImage] = useState(null);
     const { title, body } = route.params;
 
     const img_vector = require('../assets/mocki-logoV.png')
@@ -25,7 +23,7 @@ export default function Tip({route,navigation}) {
             <View style={styles.imageContainerLow}>
                 <Image
                 source={require('../assets/tipsimage.png')}
-                style={{ width: 300, height: 300}}
+                style={{ width: 200, height: 200}}
                 />
             </View>
             <View style={styles.bodyContainer}>
