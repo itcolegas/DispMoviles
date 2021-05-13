@@ -25,6 +25,8 @@ import Tip from "./layouts/Tip";
 import Progress from "./layouts/Progress";
 import Options from "./layouts/Options";
 import MockInterview from "./layouts/MockInterview";
+import Problems from "./layouts/Problems";
+import Problem from "./layouts/Problem"
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -40,7 +42,7 @@ export default function App() {
   return (
     <NavigationContainer theme={DarkTheme}>
       <Stack.Navigator>
-        {!isSignedIn ? (
+        {!true ? (
           <>
             <Stack.Screen
               name="FirstScreen"
@@ -93,6 +95,54 @@ export default function App() {
               name="Menu"
               title=""
               component={Menu}
+              options={({ navigation }) => ({
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTitle: () => (
+                  <Image style={styles.image} source={img_vector} />
+                ),
+                headerTintColor: "white",
+                headerRight: () => (
+                  <AntDesign
+                    name="user"
+                    size={30}
+                    color="white"
+                    style={styles.icon}
+                    onPress={() => navigation.navigate("Options")}
+                  />
+                ),
+              })}
+            />
+            <Stack.Screen
+              name="Problems"
+              title=""
+              component={Problems}
+              options={({ navigation }) => ({
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTitle: () => (
+                  <Image style={styles.image} source={img_vector} />
+                ),
+                headerTintColor: "white",
+                headerRight: () => (
+                  <AntDesign
+                    name="user"
+                    size={30}
+                    color="white"
+                    style={styles.icon}
+                    onPress={() => navigation.navigate("Options")}
+                  />
+                ),
+              })}
+            />
+            <Stack.Screen
+              name="Problem"
+              title=""
+              component={Problem}
               options={({ navigation }) => ({
                 title: "",
                 headerStyle: {

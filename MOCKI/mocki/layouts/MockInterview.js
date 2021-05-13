@@ -90,7 +90,7 @@ export default function MockInterview({ navigation }) {
         </Picker>
       </View>
 
-      <View style={{ marginTop: "15px", marginBottom: "15px" }}>
+      <View style={{ marginTop: 15, marginBottom: 15 }}>
         <CountdownCircleTimer
           isPlaying={isPlaying}
           duration={40 * 60}
