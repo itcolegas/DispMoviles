@@ -2,91 +2,155 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Button, Alert, TouchableOpacity, Image, TextInput, Dimensions } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
+//components
+import CustomButton from '../components/CustomButton.js'
+import CustomLink from '../components/CustomLink.js'
+import ProfileSubsection from '../components/ProfileSubsection.js'
+
 //firebase
 import firebase from '../utils/Firebase';
 import 'firebase/auth';
 
+//para scrollView
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+
 export default function Options({navigation}) {
-    const img_vector = require('../assets/mocki-logoV.png');
+
+    const user = firebase.auth().currentUser;
 
     function signOut(){
       firebase.auth().signOut()
       .then(() => console.log('User signed out!'));
     }
 
+    return(
+      <KeyboardAwareScrollView style={styles.menu}>
 
-    TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
+          <View style={styles.titleContainer}>
+              <Text style={styles.titleText}>Mi perfil</Text>
+          </View>
 
-      return (
+          <View style={styles.progressSection}>
+            <View style={styles.subtitleContainer}>
+                <Text style={styles.subtitleText}>Mi progreso</Text>
+            </View>
+          </View>
 
-        <View style={styles.menu}>
-            <View style={styles.imageContainer}>
-                <Image
-                source={img_vector}
-                style={{ width: 200, height: 50}}
+          <View style={styles.infoSection}>
+              <Text style={styles.subtitleText}>Mi información</Text>
+              <View style={styles.subsection}>
+                <ProfileSubsection
+                  baseInfo="Correo electrónico"
+                  innerInfo={user.email}
                 />
-            </View>
-            <View style={styles.titleContainer}>
-                <Text style={styles.titleText}>Options</Text>
-            </View>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={() => signOut()} style={styles.appButtonContainer}>
-                    <Text style={styles.appButtonText}>Logout</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
+                <View style={styles.linkSection}>
+                  <CustomLink
+                    title="Cambiar correo electrónico"
+                    onPress={() => console.log()}
+                  />
+                </View>
+              </View>
+              <View style={styles.subsection}>
+                <ProfileSubsection
+                  baseInfo="Nombre de usuario"
+                  innerInfo={user.displayName}
+                />
+              </View>
+          </View>
 
+          <View style={styles.securitySection}>
+              <Text style={styles.subtitleText}>Seguridad</Text>
+              <View style={styles.subsection}>
+                <ProfileSubsection
+                  baseInfo="Contraseña"
+                  innerInfo="¿Olvidó su contraseña?"
+                />
+                <View style={styles.linkSection}>
+                  <CustomLink
+                    title="Cambiar contraseña"
+                    onPress={() => console.log()}
+                  />
+                </View>
+              </View>
+              <View style={styles.subsection}>
+                <ProfileSubsection
+                  baseInfo="¿Cuenta verificada?"
+                  innerInfo={user.emailVerified ? "La cuenta ha sido verificada" : "La cuenta no ha sido verificada"}
+                />
+                <View style={styles.linkSection}>
+                  {!user.emailVerified ?
+                    <CustomLink
+                      title="Enviar correo de verificación"
+                      onPress={() => console.log()}
+                    />
+                  : null}
+                </View>
+              </View>
+              <View style={styles.subsection}>
+                <ProfileSubsection
+                  baseInfo="Eliminar cuenta"
+                  innerInfo={"Esta acción no se puede desahacer"}
+                />
+                <View style={styles.linkSection}>
+                  <CustomLink
+                    title="Eliminar cuenta"
+                    onPress={() => console.log()}
+                  />
+                </View>
+              </View>
+          </View>
+          <View style={styles.buttonContainer}>
+            <CustomButton
+              title="Cerrar sesión"
+              paddingVertical={10}
+              marginBottom={15}
+              onPress={() => signOut()}
+              backgroundColor="#EDB458"
+            />
+         </View>
+      </KeyboardAwareScrollView>
     )
 }
 
-
-
 const styles = StyleSheet.create({
-    menu: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: 'black',
-        alignItems: 'center',
-        padding: 20,
-        overflow: 'scroll'
+    menu:{
+      backgroundColor: 'black',
+      marginLeft: 30,
+      marginRight: 30,
+
     },
-    imageContainer: {
-        height: hp('10%'),
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
+    progressSection:{
+      height: hp('35%'),
+    },
+    infoSection:{
+      height: hp('28%'),
+    },
+    securitySection:{
+      height: hp('45%'),
+    },
+    subsection:{
+      height: hp('10%'),
+      marginBottom: 15,
+    },
     titleContainer:{
-        paddingBottom: 20
-    },
-    buttonContainer:{
-        paddingBottom: 20
-    },
-    graphContainer:{
-        paddingTop: 10,
-        paddingBottom: 10
-    },
-    buttonsContainer:{
-        alignItems: 'center',
-        flex: 1,
-        padding: 60,
-        justifyContent: 'space-between'
+      height: hp('15%'),
     },
     titleText:{
-        paddingTop: 40,
-        fontSize: 30,
-        color: 'white'
+      fontFamily: 'HelveticaNeue-Medium',
+      marginTop: 30,
+      fontSize: 40,
+      color: 'white'
     },
-    appButtonContainer: {
-        backgroundColor: "#08DD16",
-        borderRadius: 5,
-        paddingVertical: 10,
-        paddingHorizontal: 12,
-        width: 250
+    subtitleText:{
+      marginBottom: 15,
+      fontFamily: 'HelveticaNeue',
+      fontSize: 25,
+      color: 'white'
     },
-    appButtonText: {
-        fontSize: 18,
-        color: "white",
-        fontWeight: "bold",
-        alignSelf: "center",
+    linkSection:{
+      marginTop: 8,
     },
+    buttonContainer:{
+      height: hp('10%')
+    }
   });
