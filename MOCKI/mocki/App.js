@@ -27,6 +27,7 @@ import Options from "./layouts/Options";
 import MockInterview from "./layouts/MockInterview";
 import Problems from "./layouts/Problems";
 import Problem from "./layouts/Problem"
+import Quiz from "./layouts/Quiz"
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -179,6 +180,18 @@ export default function App() {
               name="Tip"
               title=""
               component={Tip}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="Quiz"
+              title=""
+              component={Quiz}
               options={{
                 title: "",
                 headerStyle: {
