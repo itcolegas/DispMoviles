@@ -4,7 +4,8 @@ import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export default function Tip({route,navigation}) {
 
-    const { title, body } = route.params;
+    const { title, body, image } = route.params;
+    const imageurl = {uri: image};
 
     const img_vector = require('../assets/mocki-logoV.png')
   
@@ -22,7 +23,7 @@ export default function Tip({route,navigation}) {
             </View>
             <View style={styles.imageContainerLow}>
                 <Image
-                source={require('../assets/tipsimage.png')}
+                source={imageurl}
                 style={{ width: 200, height: 200}}
                 />
             </View>
