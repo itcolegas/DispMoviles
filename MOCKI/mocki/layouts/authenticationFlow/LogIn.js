@@ -44,6 +44,10 @@ const LogIn = ({route, navigation}) => {
      });
   };
 
+  const sendPswdRecoveryEmail = () =>{
+    navigation.navigate('RecoverPswdForm');
+  }
+
   return(
     <KeyboardAwareScrollView style={authStyles.viewContainer}>
 
@@ -93,7 +97,7 @@ const LogIn = ({route, navigation}) => {
         />
 
         <TouchableOpacity
-          onPress={console.log()}
+          onPress={() => sendPswdRecoveryEmail()}
         >
           <Text style={styles.link}>
             ¿Olvidaste tu contraseña?
