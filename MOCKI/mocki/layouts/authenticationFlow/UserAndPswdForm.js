@@ -32,8 +32,9 @@ const UserAndPswdForm = ({route, navigation}) => {
     const userProfile = {...data, ...route.params};
     console.log(userProfile);
     firebase.auth().createUserWithEmailAndPassword(userProfile.email, userProfile.password)
-     .then(() => {
+     .then(user => {
        console.log('User account created & signed in!');
+       user.user.sendEmailVerification();
      })
      .catch(error => {
        if(error == 'auth/email-already-in-use'){

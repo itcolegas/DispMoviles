@@ -18,6 +18,7 @@ import { DarkTheme } from "@react-navigation/native";
 import Menu from "./layouts/Menu";
 import FirstScreen from "./layouts/authenticationFlow/FirstScreen";
 import LogIn from "./layouts/authenticationFlow/LogIn";
+import RecoverPswdForm from "./layouts/authenticationFlow/RecoverPswdForm";
 import MailForm from "./layouts/authenticationFlow/MailForm";
 import UserAndPswdForm from "./layouts/authenticationFlow/UserAndPswdForm";
 import Tips from "./layouts/Tips";
@@ -81,6 +82,18 @@ export default function App() {
               name="LogIn"
               title=""
               component={LogIn}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="RecoverPswdForm"
+              title=""
+              component={RecoverPswdForm}
               options={{
                 title: "",
                 headerStyle: {
