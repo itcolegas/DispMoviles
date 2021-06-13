@@ -21,6 +21,8 @@ import LogIn from "./layouts/authenticationFlow/LogIn";
 import RecoverPswdForm from "./layouts/authenticationFlow/RecoverPswdForm";
 import MailForm from "./layouts/authenticationFlow/MailForm";
 import UserAndPswdForm from "./layouts/authenticationFlow/UserAndPswdForm";
+import ChangeUserInfoForm from "./layouts/ChangeUserInfoForm";
+import DeleteAccountForm from "./layouts/DeleteAccountForm";
 import Tips from "./layouts/Tips";
 import Tip from "./layouts/Tip";
 import Progress from "./layouts/Progress";
@@ -229,6 +231,30 @@ export default function App() {
               name="Options"
               title=""
               component={Options}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="ChangeUserInfoForm"
+              title=""
+              component={ChangeUserInfoForm}
+              options={{
+                title: "",
+                headerStyle: {
+                  backgroundColor: "black",
+                },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="DeleteAccountForm"
+              title=""
+              component={DeleteAccountForm}
               options={{
                 title: "",
                 headerStyle: {

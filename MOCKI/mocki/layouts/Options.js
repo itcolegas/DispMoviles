@@ -46,7 +46,10 @@ export default function Options({navigation}) {
                 <View style={styles.linkSection}>
                   <CustomLink
                     title="Cambiar correo electrónico"
-                    onPress={() => console.log()}
+                    onPress={() => {
+                        navigation.navigate('ChangeUserInfoForm', { action: "email" })
+                      }
+                    }
                   />
                 </View>
               </View>
@@ -68,7 +71,10 @@ export default function Options({navigation}) {
                 <View style={styles.linkSection}>
                   <CustomLink
                     title="Cambiar contraseña"
-                    onPress={() => console.log()}
+                    onPress={() => {
+                        navigation.navigate('ChangeUserInfoForm', { action: "password" })
+                      }
+                    }
                   />
                 </View>
               </View>
@@ -81,7 +87,7 @@ export default function Options({navigation}) {
                   {!user.emailVerified ?
                     <CustomLink
                       title="Enviar correo de verificación"
-                      onPress={() => console.log()}
+                      onPress={() => user.sendEmailVerification()}
                     />
                   : null}
                 </View>
@@ -94,7 +100,7 @@ export default function Options({navigation}) {
                 <View style={styles.linkSection}>
                   <CustomLink
                     title="Eliminar cuenta"
-                    onPress={() => console.log()}
+                    onPress={() => navigation.navigate('DeleteAccountForm')}
                   />
                 </View>
               </View>
