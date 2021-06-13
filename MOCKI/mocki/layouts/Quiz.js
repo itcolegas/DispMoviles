@@ -72,13 +72,27 @@ export default function Quiz({navigation}) {
     const onSubmit= (data) => alert(JSON.stringify(data));
     
     const [radioButtons, setRadioButtons] = useState(radioButtonsData)
+    const [time, setTime] = useState("")
     const [radioButtonsC, setRadioButtonsC] = useState(radioButtonsCompany)
+    const [company, setCompany] = useState("")
 
     function onPressRadioButton(radioButtonsArray) {
+        radioButtonsArray.forEach(function (arrayItem) {
+            if(arrayItem.selected == true){
+                setTime(arrayItem.label)
+            }
+        });
         setRadioButtons(radioButtonsArray);
     }
 
+
+
     function onPressRadioButtonC(radioButtonsArray) {
+        radioButtonsArray.forEach(function (arrayItem) {
+            if(arrayItem.selected == true){
+                setCompany(arrayItem.label)
+            }
+        });
         setRadioButtonsC(radioButtonsArray);
     }
 
@@ -111,7 +125,7 @@ export default function Quiz({navigation}) {
                 onPress={onPressRadioButtonC} 
             />
 
-<AppButton title="Submit"  onPress={() => navigation.navigate('Menu',{opc1: "time" , opc2: "company"})}/>
+<AppButton title="Submit"  onPress={() => navigation.navigate('Menu',{time: time , company: company})}/>
         </View>
 
     )
