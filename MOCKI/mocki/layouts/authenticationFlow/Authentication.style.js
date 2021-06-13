@@ -48,5 +48,12 @@ export default StyleSheet.create({
     fontFamily: 'HelveticaNeue',
     paddingLeft: 18,
     paddingRight: 18,
+  },
+  msg:{
+    fontSize: 16,
+    color: '#6DD98C',
+    fontFamily: 'HelveticaNeue',
+    paddingLeft: 18,
+    paddingRight: 18,
   }
 });

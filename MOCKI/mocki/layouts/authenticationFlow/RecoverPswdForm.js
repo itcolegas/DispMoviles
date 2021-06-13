@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React  from 'react';
+import React, { useState }  from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 
 //firebase
@@ -31,8 +31,24 @@ const RecoverPswdForm = ({navigation}) => {
 
   const {control, handleSubmit, formState: { errors } } = useForm();
 
+  const [msg, setMsg] = useState("");
+  const [error, setError] = useState("");
+
   const onSubmit = (data) => {
-    firebase.auth().sendPasswordResetEmail(data.email);
+    setError("");
+    setMsg("");
+    firebase.auth().sendPasswordResetEmail(data.email)
+    .then(user => {
+      console.log('Reset email sent');
+      setMsg('Se le ha enviado un correo electrónico con el que podrá cambiar su contraseña.');
+    })
+    .catch(error => {
+      if(error.code == 'auth/user-not-found'){
+        setError('Parece ser que no existe una cuenta con el mail que ha ingresado.');
+      }else{
+        setError('Ocurrio un error inesperado. Intentelo de nuevo');
+      }
+    });
   };
 
   return(
@@ -42,6 +58,9 @@ const RecoverPswdForm = ({navigation}) => {
           <Text style={authStyles.title}>Introduce tu correo electrónico</Text>
           <Text style={authStyles.subtitle}>Te enviaremos un correo con los siguientes pasos a seguir</Text>
       </View>
+
+      <Text style={[authStyles.msg, {height: msg ? hp('10') : hp('0')}]}>{msg}</Text>
+      <Text style={[authStyles.error, {height: error ? hp('10') : hp('0')}]}>{error}</Text>
 
       <View style={[authStyles.formContainer, styles.formContainer]}>
         <Controller
@@ -89,7 +108,7 @@ const styles = StyleSheet.create({
     marginTop:30,
     paddingRight:15,
     paddingLeft:15,
-  }
+  },
 });
 
 export default RecoverPswdForm;

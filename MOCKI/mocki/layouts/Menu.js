@@ -3,8 +3,13 @@ import { View, Text, StyleSheet, Button, Dimensions } from 'react-native';
 
 import CardsCarousel from '../components/CardsCarousel';
 
+//firebase
+import firebase from '../utils/Firebase';
+import 'firebase/auth';
+
 export default function Menu({navigation}) {
-    const [username, setUserName] = useState('Ruben');
+    const user = firebase.auth().currentUser;
+    const [username, setUserName] = useState(user.displayName);
     return (
         <View style={styles.menu}>
             <View style={styles.welcomeContainer}>

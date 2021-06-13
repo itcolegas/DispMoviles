@@ -35,9 +35,10 @@ const UserAndPswdForm = ({route, navigation}) => {
      .then(user => {
        console.log('User account created & signed in!');
        user.user.sendEmailVerification();
+       user.user.updateProfile({displayName: data.user});
      })
      .catch(error => {
-       if(error == 'auth/email-already-in-use'){
+       if(error.code == 'auth/email-already-in-use'){
          setError('La dirección de correo electronico ingresada ya está en uso.');
        }else{
          setError('Ocurrio un error inesperado. Intentelo de nuevo');
