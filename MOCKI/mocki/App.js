@@ -42,7 +42,7 @@ export default function App() {
   return (
     <NavigationContainer theme={DarkTheme}>
       <Stack.Navigator>
-        {!true ? (
+        {!isSignedIn ? (
           <>
             <Stack.Screen
               name="FirstScreen"

@@ -12,6 +12,8 @@ import { useForm, Controller } from "react-hook-form";
 //para responsividad
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
+//para scrollView
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 
 //componentes
 import CustomButton from '../../components/CustomButton.js'
@@ -22,22 +24,35 @@ import authStyles from './Authentication.style.js';
 
 const LogIn = ({route, navigation}) => {
 
-  const {control, handleSubmit, formState: { errors } } = useForm()
-  ;
+  const {control, handleSubmit, formState: { errors } } = useForm();
+  const [error, setError] = useState("");
+
   const onSubmit = (data) => {
     firebase.auth().signInWithEmailAndPassword(data.email, data.password)
      .then(() => {
        console.log('User account signed in!');
+     })
+     .catch(error => {
+       console.log(error.code);
+       if(error.code == 'auth/wrong-password'){
+         setError("La contraseña y el correo ingresado no coinciden.");
+       }else if (error.code == 'auth/user-not-found'){
+           setError("No se encontró una cuenta con este correo.");
+       }else{
+         setError("Ocurrio un error inesperado. Intentelo de nuevo.");
+       }
      });
   };
 
   return(
-    <View style={authStyles.viewContainer}>
+    <KeyboardAwareScrollView style={authStyles.viewContainer}>
 
       <View style={[authStyles.textContainer, styles.textContainer]}>
         <Text style={authStyles.title}>¡Hola de nuevo!</Text>
         <Text style={authStyles.subtitle}>Nos alegra tenerte de vuelta</Text>
       </View>
+
+      <Text style={[authStyles.error, {height: error ? hp('8') : hp('1')}]}>{error}</Text>
 
       <View style={[authStyles.formContainer, styles.formContainer]}>
         <Controller
@@ -49,11 +64,14 @@ const LogIn = ({route, navigation}) => {
               placeholder={errors.email ? "Campo requerido" : "john@gmail.com"}
               onChangeText={value => onChange(value)}
               defaultValue={value}
-              error = {errors.email}
+              error = {
+                errors.email?.type === "required" && "Llene este campo" ||
+                errors.email?.type === "pattern" && "Ingrese un correo valido"
+              }
             />
           )}
           name="email"
-          rules={{ required: true }}
+        rules={{required: true, pattern:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g}}
         />
         <Controller
           control={control}
@@ -64,12 +82,14 @@ const LogIn = ({route, navigation}) => {
               placeholder={errors.password ? "Campo requerido": "***********************"}
               onChangeText={value => onChange(value)}
               defaultValue={value}
-              error = {errors.password}
+              error = {
+                errors.password?.type === "required" && "Llene este campo"
+              }
               secureTextEntry = {true}
             />
           )}
           name="password"
-          rules={{ required: true }}
+          rules={{required: true}}
         />
 
         <TouchableOpacity
@@ -91,21 +111,20 @@ const LogIn = ({route, navigation}) => {
         />
      </View>
 
-    </View>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   link:{
-    marginTop:-5,
     color: '#6DD98C',
     fontSize:12,
   },
   formContainer:{
-    height: hp('15%'),
+    height: hp('18%'),
   },
   textContainer: {
-    height: hp('15%'),
+    height: hp('14%'),
   },
   buttonContainer:{
     marginTop: 100,

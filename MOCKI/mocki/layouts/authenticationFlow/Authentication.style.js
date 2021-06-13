@@ -42,4 +42,11 @@ export default StyleSheet.create({
   controller:{
     paddingLeft: 20,
   },
+  error:{
+    fontSize: 16,
+    color: '#d95d5d',
+    fontFamily: 'HelveticaNeue',
+    paddingLeft: 18,
+    paddingRight: 18,
+  }
 });

@@ -17,6 +17,9 @@ import { useForm, Controller } from "react-hook-form";
 //para responsividad
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
+//para scrollView
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+
 //componentes
 import CustomButton from '../../components/CustomButton.js'
 import FormBox from '../../components/FormBox.js'
@@ -48,7 +51,7 @@ const MailForm = ({navigation}) => {
   };
 
   return(
-    <View style={authStyles.viewContainer}>
+    <KeyboardAwareScrollView style={authStyles.viewContainer}>
 
       <View style={[authStyles.textContainer, styles.textContainer]}>
           <Text style={authStyles.title}>Introduce tu correo electrónico</Text>
@@ -62,14 +65,17 @@ const MailForm = ({navigation}) => {
             <FormBox
               icon="envelope"
               tag="Dirección de email"
-              placeholder={errors.email ? "Llene este campo" : "john@gmail.com"}
+              placeholder={"john@gmail.com"}
               onChangeText={value => onChange(value)}
               defaultValue={value}
-              error = {errors.email}
+              error={
+                errors.email?.type === "required" && "Llene este campo" ||
+                errors.email?.type === "pattern" && "Ingrese un correo valido"
+              }
             />
           )}
           name="email"
-          rules={{required: true}}
+          rules={{required: true, pattern:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g}}
         />
       </View>
 
@@ -100,13 +106,13 @@ const MailForm = ({navigation}) => {
         />
       </View>
 
-    </View>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   formContainer:{
-    height: hp('12%'),
+    height: hp('12.5%'),
   },
   textContainer: {
     height: hp('22%'),
