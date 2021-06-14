@@ -6,6 +6,15 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import firebase from '../../utils/Firebase';
 import 'firebase/auth';
 
+//firebase
+import firebaseForGoogle from 'firebase';
+
+//expo
+import { ResponseType } from 'expo-auth-session';
+
+//google auth
+import * as Google from 'expo-auth-session/providers/google';
+
 //para Formularios
 import { useForm, Controller } from "react-hook-form";
 
@@ -13,11 +22,12 @@ import { useForm, Controller } from "react-hook-form";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 //para scrollView
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 //componentes
-import CustomButton from '../../components/CustomButton.js'
-import FormBox from '../../components/FormBox.js'
+import CustomLink from '../../components/CustomLink.js';
+import CustomButton from '../../components/CustomButton.js';
+import FormBox from '../../components/FormBox.js';
 
 //styleSheet
 import authStyles from './Authentication.style.js';
@@ -26,6 +36,21 @@ const LogIn = ({route, navigation}) => {
 
   const {control, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState("");
+
+  const [request, response, promptAsync] = Google.useIdTokenAuthRequest(
+    {
+      clientId: '374522304776-m7dtulsej4dtrniu090ighcm3d6kgcoc.apps.googleusercontent.com',
+      },
+  );
+
+  React.useEffect(() => {
+    if (response?.type === 'success') {
+     const { id_token } = response.params;
+
+     const credential = firebaseForGoogle.auth.GoogleAuthProvider.credential(id_token);
+     firebaseForGoogle.auth().signInWithCredential(credential);
+   }
+  });
 
   const onSubmit = (data) => {
     firebase.auth().signInWithEmailAndPassword(data.email, data.password)
@@ -95,43 +120,48 @@ const LogIn = ({route, navigation}) => {
           name="password"
           rules={{required: true}}
         />
-
-        <TouchableOpacity
-          onPress={() => sendPswdRecoveryEmail()}
-        >
-          <Text style={styles.link}>
-            ¿Olvidaste tu contraseña?
-          </Text>
-       </TouchableOpacity>
-
       </View>
-
-     <View style={[authStyles.buttonContainer, styles.buttonContainer]}>
+      <View style={styles.link}>
+        <CustomLink
+          title="¿Olvidó su contraseña?"
+          onPress={() => sendPswdRecoveryEmail()}
+        />
+      </View>
+      <View style={[authStyles.buttonContainer, styles.buttonContainer]}>
         <CustomButton
           title="Iniciar sesión"
           paddingVertical={10}
           onPress={handleSubmit(onSubmit)}
           backgroundColor="#6DD98C"
         />
-     </View>
+      </View>
+      <View style={[authStyles.buttonContainer, styles.buttonContainer]}>
+        <CustomButton
+          title="Iniciar sesión con Google"
+          paddingVertical={20}
+          onPress={() => promptAsync()}
+          icon="google"
+          backgroundColor="#DB4A39"
+        />
+       </View>
 
     </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  link:{
-    color: '#6DD98C',
-    fontSize:12,
-  },
   formContainer:{
-    height: hp('18%'),
+    height: hp('23%'),
   },
   textContainer: {
     height: hp('14%'),
   },
   buttonContainer:{
-    marginTop: 100,
+    height: hp('12%'),
+  },
+  link:{
+    marginLeft: 16,
+    marginBottom: 25,
   }
 });
 

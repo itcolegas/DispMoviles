@@ -90,14 +90,6 @@ const MailForm = ({navigation}) => {
 
       <View style={styles.serviceButtonContainer}>
         <CustomButton
-          title="Crear cuenta con Facebook"
-          paddingVertical={20}
-          marginBottom={35}
-          onPress={console.log()}
-          icon="facebook-f"
-          backgroundColor="#3B5998"
-        />
-        <CustomButton
           title="Crear cuenta con Google"
           paddingVertical={20}
           onPress={() => promptAsync()}
