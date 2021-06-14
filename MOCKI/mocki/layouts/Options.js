@@ -30,12 +30,6 @@ export default function Options({navigation}) {
               <Text style={styles.titleText}>Mi perfil</Text>
           </View>
 
-          <View style={styles.progressSection}>
-            <View style={styles.subtitleContainer}>
-                <Text style={styles.subtitleText}>Mi progreso</Text>
-            </View>
-          </View>
-
           <View style={styles.infoSection}>
               <Text style={styles.subtitleText}>Mi información</Text>
               <View style={styles.subsection}>

@@ -1,26 +1,69 @@
-import React from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React, { useState } from 'react'
+import { View, ScrollView, Text, StyleSheet, Pressable, Modal, Linking } from 'react-native';
 
 export default function Problem({ route, navigation }) {
-    const {name, category, difficulty} = route.params;
-    const content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper metus elementum sem consectetur, at aliquet enim condimentum. Nullam quam dolor, semper a sapien in, dignissim laoreet odio. Phasellus suscipit, nisi at scelerisque dignissim, massa dui iaculis mauris, id scelerisque felis ipsum a ligula.\n\nNullam lectus arcu, blandit ac ultricies in, interdum et turpis. Donec velit nibh, pulvinar non facilisis in, interdum non elit. Pellentesque facilisis, ante eget dictum bibendum, tortor massa accumsan felis, et sollicitudin justo massa eget massa. Aenean euismod arcu maximus leo feugiat facilisis. Nulla sit amet metus volutpat, convallis tortor a, efficitur nisl. Donec aliquam non leo eget consectetur';
-    const hint = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper metus elementum sem consectetur, at aliquet enim condimentum. Nullam quam dolor, semper a sapien in, dignissim laoreet odio.';
+    const {name, category, difficulty, description, hint, link} = route.params;
+    const [ modalVisible, setModalVisible ] = useState(false);
 
     const firstUpperCase = (str) => {
         return(`${str[0].toUpperCase()}${str.slice(1)}`)
     }
 
+    const loadInBrowser = () => {
+        Linking.openURL(link).catch(err => console.error("Couldn't load page", err));
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
                 <Text style={styles.header}>{name}</Text>
-                <Text style={styles.header}>{category} | <Text style={styles[difficulty]}>{firstUpperCase(difficulty)}</Text></Text>
+                <Text style={styles.header}>{firstUpperCase(category)} | <Text style={styles[difficulty]}>{firstUpperCase(difficulty)}</Text></Text>
             </View>
             <View style={styles.contentContainer}>
-                <Text style={styles.content}>
-                    {content}
-                </Text>
-                <Button title='Hint' onPress={() => alert(hint)}/>
+                <ScrollView>
+                    <Text style={styles.content}>
+                        {"\n\n" + description + "\n\n"}
+                    </Text>
+                    
+                    {hint
+                    ? <>
+                        <Modal
+                            animationType="slide"
+                            transparent={true}
+                            visible={modalVisible}
+                            onRequestClose={() => {
+                            Alert.alert("Modal has been closed.");
+                            setModalVisible(!modalVisible);
+                            }}
+                        >
+                            <View style={styles.centeredView}>
+                                <View style={styles.modalView}>
+                                    <Text style={styles.modalText}>{hint}</Text>
+                                    <Pressable
+                                    style={[styles.button, styles.buttonClose]}
+                                    onPress={() => setModalVisible(!modalVisible)}
+                                    >
+                                    <Text style={styles.textStyle}>Close</Text>
+                                    </Pressable>
+                                </View>
+                            </View>
+                        </Modal>
+                        <Pressable
+                            style={[styles.button, styles.buttonOpen]}
+                            onPress={() => setModalVisible(true)}
+                        >
+                            <Text style={styles.textStyle}>Hint</Text>
+                        </Pressable>
+                        <Text>{"\n"}</Text>
+                    </>
+                    : null}
+                    <Pressable
+                        style={[styles.button, styles.buttonOpen]}
+                        onPress={ loadInBrowser }
+                    >
+                        <Text style={styles.textStyle}>Try it on LeetCode!</Text>
+                    </Pressable>
+                </ScrollView>
             </View>
         </View>
     )
@@ -61,4 +104,45 @@ const styles = StyleSheet.create({
     hard: {
         color: '#A30000'
     },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+    },
+    buttonOpen: {
+        backgroundColor: "#15c712",
+    },
+    buttonClose: {
+        backgroundColor: "#15c712",
+    },
+    textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: "center"
+    }
 })

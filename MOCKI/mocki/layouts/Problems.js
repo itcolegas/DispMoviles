@@ -1,37 +1,44 @@
-import React, {useState} from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, ScrollView, Text, StyleSheet, Button, Pressable } from 'react-native';
 import FilterPicker from '../components/FilterPicker';
+import axios from 'axios';
+import { api } from '../config';
 
-const testData = [
-    {
-        name: 'Two Sum',
-        category: 'Array',
-        difficulty: 'easy'
-    },
-    {
-        name: 'ZigZag Conversion',
-        category: 'String',
-        difficulty: 'medium'
-    },
-    {
-        name: 'Binary Tree Inorder Traversal',
-        category: 'Tree',
-        difficulty: 'medium'
-    },
-    {
-        name: 'Recover Binary Search Tree',
-        category: 'Tree',
-        difficulty: 'hard'
-    },
-    {
-        name: 'Copy List with Random Pointer',
-        category: 'Hash Table',
-        difficulty: 'medium'
-    }
-]
 export default function Problems({navigation}) {
     const [category, setCategory] = useState('all');
     const [difficulty, setDifficulty] = useState('all');
+    const [problems, setProblems] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const searchByFilters = () => {
+        setIsLoading(true);
+        console.log(category, difficulty)
+        axios.post(api + '/get-questions',{
+            category: category,
+            difficulty: difficulty
+        })
+            .then( res => {
+                setProblems(res.data.questions)
+                setIsLoading(false);
+                console.log(problems);
+            })
+            .catch( err => {
+                console.error(err)
+            })
+    }
+
+    useEffect(() => {
+        setIsLoading(true);
+        axios.get(api + '/get-questions')
+            .then( res => {
+                setProblems(res.data.questions)
+                setIsLoading(false);
+                console.log(problems);
+            })
+            .catch( err => {
+                console.error(err)
+            })
+    }, []);
 
     const firstUpperCase = (str) => {
         return(`${str[0].toUpperCase()}${str.slice(1)}`)
@@ -42,17 +49,20 @@ export default function Problems({navigation}) {
                 <View style={styles.problem}>
                     <View style={styles.problemFeature}>
                         <Button 
-                            title={problem.name}
+                            title={problem.title}
                             onPress={ () => navigation.navigate('Problem', {
-                                name: problem.name,
+                                name: problem.title,
                                 category: problem.category,
-                                difficulty: problem.difficulty
+                                difficulty: problem.difficulty,
+                                description: problem.description,
+                                hint: problem.hint,
+                                link: problem.link
                             })}
                         />
                     </View>
                     <View style={styles.problemFeature}>
                         <Text style={styles.textCategory}> 
-                            {problem.category}
+                            {firstUpperCase(problem.category)}
                         </Text>
                     </View>
                     <View style={styles.problemFeature}>
@@ -78,7 +88,14 @@ export default function Problems({navigation}) {
                     setSelected = {setDifficulty}
                     items = {['All', 'Easy', 'Medium', 'Hard']}
                 />
+                <Pressable
+                    style={[styles.button, styles.buttonOpen]}
+                    onPress={ searchByFilters }
+                >
+                    <Text style={styles.textStyle}>Filter</Text>
+                </Pressable>
             </View>
+        
             <View style={styles.list}>
                 <View style={styles.problem}>
                     <View style={styles.problemFeature}>
@@ -91,7 +108,10 @@ export default function Problems({navigation}) {
                         <Text style={styles.tableHeader}> Difficulty </Text>
                     </View>
                 </View>
-                {mapProblems(testData)}
+                <ScrollView>
+                {!isLoading? mapProblems(problems) : null}
+
+                </ScrollView>
             </View>
         </View>
     )
@@ -103,12 +123,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#fff',
         alignItems: 'center',
-        padding: 20,
-        overflow: 'scroll'
+        padding: 20
     },
     filters: {
         flexDirection: 'row',
         justifyContent: 'space-around',
+        alignContent: 'center',
         padding: 20,
         width: '100%'
     },
@@ -152,5 +172,13 @@ const styles = StyleSheet.create({
     },
     hard: {
         borderColor: '#A30000'
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+    },
+    buttonOpen: {
+        backgroundColor: "#15c712",
     },
 });

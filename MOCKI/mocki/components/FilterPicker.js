@@ -18,7 +18,7 @@ export default function FilterPicker(props) {
         { props.setSelected ?
             <RNPickerSelect
                 placeholder={{label: placeholder, value: null, color: '#9FA0B9'}}
-                onValueChange={(value) => console.log(value)}
+                onValueChange={(value) => props.setSelected(value)}
                 items={getItems(items)}
             />: null
         }
