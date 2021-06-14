@@ -5,7 +5,7 @@ import {
   } from "react-native-chart-kit";
 
 export default function LineGraph(props){
-    
+    //Line chart with set customization
     return (
         <LineChart
             data={{

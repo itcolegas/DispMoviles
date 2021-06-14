@@ -5,9 +5,16 @@ import LineGraph from '../components/LineGraph';
 import ProgressGraph from '../components/ProgressGraph';
 
 export default function Progress() {
-    const onPress = () => alert('Sent');
 
-    const img_vector = require('../assets/mocki-logoV.png')
+    const d =new Date();
+    const onPress = () => alert(d.getMonth()+1);
+
+    const img_vector = require('../assets/mocki-logoV.png');
+
+    //Chart data
+    const lineData = [0,0,0,0,0,7];
+    const progressData = [0.7];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "June"];
     
 
     TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
@@ -15,6 +22,7 @@ export default function Progress() {
       return (
 
         <View style={styles.menu}>
+            {/*Logo*/}
             <View style={styles.imageContainer}>
                 <Image
                 source={img_vector}
@@ -24,18 +32,20 @@ export default function Progress() {
             <View style={styles.titleContainer}>
                 <Text style={styles.titleText}>My progress</Text>
             </View>
+            {/*Line graph*/}
             <View style={styles.graphContainer}>
                 <LineGraph labels={["Jan", "Feb", "Mar", "Apr", "May", "June"]}
-                    data={[1, 2, 4, 4, 5, 7]}/>
+                    data={lineData}/>
             </View>
-                <View style={styles.graphContainer}>
-                    <ProgressGraph data={[0.7]} hideLegend={false}/>
-                </View>
-                <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
-                    <Text style={styles.appButtonText}>SEND BY MAIL</Text>
-                </TouchableOpacity>
-                </View>
+            {/*Progress graph*/}
+            <View style={styles.graphContainer}>
+                <ProgressGraph data={progressData} hideLegend={false}/>
+            </View>
+            <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
+                <Text style={styles.appButtonText}>SEND BY MAIL</Text>
+            </TouchableOpacity>
+            </View>
         </View>
 
     )

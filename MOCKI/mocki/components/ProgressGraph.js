@@ -5,6 +5,7 @@ import {
   } from "react-native-chart-kit";
 
   export default function ProgressGraph(props){
+    //Progress chart with set customization
     return (
         <ProgressChart
             data={{
