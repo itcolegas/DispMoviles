@@ -3,18 +3,39 @@ import { View, Text, StyleSheet, Button, Alert, TouchableOpacity, Image } from '
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import LineGraph from '../components/LineGraph';
 import ProgressGraph from '../components/ProgressGraph';
+import axios from 'axios';
+import api from '../config'
+
+import firebase from '../utils/Firebase';
+import 'firebase/auth';
 
 export default function Progress() {
 
+    const [progress, setProgress]=useState(0);
+    const [probNum, setProb]=useState(0);
+    let user = firebase.auth().currentUser;
+    const [username, setUsername] = useState(user.displayName);
+
     const d =new Date();
-    const onPress = () => alert(d.getMonth()+1);
 
     const img_vector = require('../assets/mocki-logoV.png');
 
     //Chart data
-    const lineData = [0,0,0,0,0,7];
-    const progressData = [0.7];
+    const lineData = [0,0,0,0,0,probNum];
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "June"];
+
+    useEffect(() => {
+        axios.get(api.api+"/get-userProgress/"+username)
+        .then(res => {
+            console.log(res.data.users[0].problems)
+            let probNum = res.data.users[0].problems.length;
+            setProgress(probNum/12);
+            setProb(probNum);
+        })
+        .catch( err => {
+            console.log(error(err))
+        })
+    }, []);
     
 
     TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
@@ -39,12 +60,7 @@ export default function Progress() {
             </View>
             {/*Progress graph*/}
             <View style={styles.graphContainer}>
-                <ProgressGraph data={progressData} hideLegend={false}/>
-            </View>
-            <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
-                <Text style={styles.appButtonText}>SEND BY MAIL</Text>
-            </TouchableOpacity>
+                <ProgressGraph data={[progress]} hideLegend={false}/>
             </View>
         </View>
 
