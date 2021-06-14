@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import { View, ScrollView, Text, StyleSheet, Pressable, Modal, Linking } from 'react-native';
+import firebase from '../utils/Firebase';
+import axios from 'axios'
+import { api } from '../config'
 
 export default function Problem({ route, navigation }) {
     const {name, category, difficulty, description, hint, link} = route.params;
     const [ modalVisible, setModalVisible ] = useState(false);
+    const [ completed, setCompleted ] = useState(false)
+    let user = firebase.auth().currentUser;
 
     const firstUpperCase = (str) => {
         return(`${str[0].toUpperCase()}${str.slice(1)}`)
@@ -12,6 +17,21 @@ export default function Problem({ route, navigation }) {
     const loadInBrowser = () => {
         Linking.openURL(link).catch(err => console.error("Couldn't load page", err));
     };
+
+    const updateUser = () => {
+        console.log(user.displayName)
+        axios.post(api + '/update-user', {
+            username: user.displayName
+        })
+        .then(res => {
+            setCompleted(true);
+            console.log(res);
+        })
+        .catch(err => {
+            console.error(err);
+            setCompleted(true);
+        })
+    }
 
     return (
         <View style={styles.container}>
@@ -63,6 +83,16 @@ export default function Problem({ route, navigation }) {
                     >
                         <Text style={styles.textStyle}>Try it on LeetCode!</Text>
                     </Pressable>
+                    <Text>{"\n"}</Text>
+                    {!completed
+                    ?<Pressable
+                        style={[styles.button, styles.buttonOpen]}
+                        onPress={ updateUser }
+                    >
+                        <Text style={styles.textStyle}>Add to my progress</Text>
+                    </Pressable>
+                    : <Text style={styles.textStyleCompleted}>Problem added to progress</Text>
+                    }   
                 </ScrollView>
             </View>
         </View>
@@ -138,6 +168,11 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+    textStyleCompleted: {
+        color: "black",
         fontWeight: "bold",
         textAlign: "center"
     },
