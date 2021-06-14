@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, ScrollView, Text, StyleSheet, Button, Pressable, Dimensions } from 'react-native';
 import { Icon } from 'react-native-elements'
 
