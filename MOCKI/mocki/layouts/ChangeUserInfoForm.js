@@ -34,7 +34,9 @@ const ChangeUserInfoForm = ({route, navigation}) => {
 
   const user = firebase.auth().currentUser;
 
-  const action = route.params.action
+  const action = route.params.action;
+
+  const actionContainer = (action == "email") ? styles.emailFormContainer : styles.pswdFormContainer;
 
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
@@ -102,112 +104,72 @@ const ChangeUserInfoForm = ({route, navigation}) => {
     });
   };
 
-  if(action == "email"){
-    return(
-      <KeyboardAwareScrollView style={authStyles.viewContainer}>
-        <View style={[authStyles.textContainer, styles.textContainer]}>
-            <Text style={authStyles.title}>Introduzca un nuevo correo electrónico</Text>
-            <Text style={authStyles.subtitle}>
-              A partir de ahora iniciará sesión con el correo que ingrese.
-            </Text>
-        </View>
-
-        <Text style={[authStyles.msg, {height: msg ? hp('10') : hp('0')}]}>{msg}</Text>
-        <Text style={[authStyles.error, {height: error ? hp('10') : hp('0')}]}>{error}</Text>
-
-        <View style={[authStyles.formContainer, styles.emailFormContainer]}>
-          <Controller
-            control={control}
-            render={({ field: { onChange, onBlur, value }}) => (
-              <FormBox
-                icon="lock"
-                tag="Contraseña actual"
-                placeholder={errors.password ? "Campo requerido": "***********************"}
-                onChangeText={value => onChange(value)}
-                defaultValue={value}
-                error = {
-                  errors.current_pswd?.type === "required" && "Llene este campo"
-                }
-                secureTextEntry = {true}
-              />
-            )}
-            name="current_pswd"
-            rules={{required: true}}
-          />
-          <View style={styles.linkContainer}>
-            <CustomLink
-              title="¿Olvidó su contraseña?"
-              onPress={() => sendPasswordResetEmail()}
+  return(
+    <KeyboardAwareScrollView style={authStyles.viewContainer}>
+      <View style={[authStyles.textContainer, styles.textContainer]}>
+         <Text
+          style={authStyles.title}>
+          {action == "email"
+            ? "Introduzca un nuevo correo electrónico"
+            : "Introduzca una nueva contraseña"
+          }
+         </Text>
+         <Text
+          style={authStyles.subtitle}>
+          {action == "email"
+            ? "A partir de ahora iniciará sesión con el correo que ingrese."
+            : "A partir de ahora iniciará sesión con la contraseña que ingrese."
+          }
+         </Text>
+      </View>
+      <Text style={[authStyles.msg, {height: msg ? hp('10') : hp('0')}]}>{msg}</Text>
+      <Text style={[authStyles.error, {height: error ? hp('10') : hp('0')}]}>{error}</Text>
+      <View style={[authStyles.formContainer, actionContainer]}>
+       <Controller
+         control={control}
+         render={({ field: { onChange, onBlur, value }}) => (
+           <FormBox
+             icon="lock"
+             tag="Contraseña actual"
+             placeholder={errors.password ? "Campo requerido": "***********************"}
+             onChangeText={value => onChange(value)}
+             defaultValue={value}
+             error = {
+               errors.current_pswd?.type === "required" && "Llene este campo"
+             }
+             secureTextEntry = {true}
+           />
+         )}
+         name="current_pswd"
+         rules={{required: true}}
+       />
+       <View style={styles.linkContainer}>
+         <CustomLink
+           title="¿Olvidó su contraseña?"
+           onPress={() => sendPasswordResetEmail()}
+         />
+       </View>
+       {action == "email" ?
+         <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value }}) => (
+            <FormBox
+              icon="envelope"
+              tag="Dirección de email"
+              placeholder={"john@gmail.com"}
+              onChangeText={value => onChange(value)}
+              defaultValue={value}
+              error={
+                errors.email?.type === "required" && "Llene este campo" ||
+                errors.email?.type === "pattern" && "Ingrese un correo valido"
+              }
             />
-          </View>
-          <Controller
-            control={control}
-            render={({ field: { onChange, onBlur, value }}) => (
-              <FormBox
-                icon="envelope"
-                tag="Dirección de email"
-                placeholder={"john@gmail.com"}
-                onChangeText={value => onChange(value)}
-                defaultValue={value}
-                error={
-                  errors.email?.type === "required" && "Llene este campo" ||
-                  errors.email?.type === "pattern" && "Ingrese un correo valido"
-                }
-              />
-            )}
-            name="email"
-            rules={{required: true, pattern:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g}}
-          />
-        </View>
-
-        <View style={authStyles.buttonContainer}>
-          <CustomButton
-            title="Enviar"
-            paddingVertical={10}
-            onPress={handleSubmit(changeEmail)}
-            backgroundColor="#6DD98C"
-          />
-        </View>
-      </KeyboardAwareScrollView>
-    );
-  }else if(action == "password"){
-    return(
-      <KeyboardAwareScrollView style={authStyles.viewContainer}>
-        <View style={[authStyles.textContainer, styles.textContainer]}>
-            <Text style={authStyles.title}>Introduzca una nueva contraseña</Text>
-            <Text style={authStyles.subtitle}>
-              A partir de ahora iniciará sesión con la contraseña que ingrese.
-            </Text>
-        </View>
-
-        <Text style={[authStyles.msg, {height: msg ? hp('10') : hp('0')}]}>{msg}</Text>
-        <Text style={[authStyles.error, {height: error ? hp('10') : hp('0')}]}>{error}</Text>
-
-        <View style={[authStyles.formContainer, styles.pswdFormContainer]}>
-          <Controller
-            control={control}
-            render={({ field: { onChange, onBlur, value }}) => (
-              <FormBox
-                icon="lock"
-                tag="Contraseña actual"
-                placeholder={errors.password ? "Campo requerido": "***********************"}
-                onChangeText={value => onChange(value)}
-                defaultValue={value}
-                error = {
-                  errors.password?.type === "required" && "Llene este campo"
-                }
-                secureTextEntry = {true}
-              />
-            )}
-            name="current_pswd"
-            rules={{required: true}}
-          />
-          <View style={styles.linkContainer}>
-            <CustomLink
-              title="¿Olvidó su contraseña?"
-              onPress={sendPasswordResetEmail()}
-            />
-          </View>
+          )}
+          name="email"
+          rules={{required: true, pattern:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g}}
+        />
+        :
+        <>
           <Controller
             control={control}
             render={({ field: { onChange, onBlur, value }}) => (
@@ -254,19 +216,19 @@ const ChangeUserInfoForm = ({route, navigation}) => {
             name="conf_password"
             rules={{required: true, validate: value => value === control.fieldsRef.current.new_pswd._f.value}}
           />
-          </View>
-
-          <View style={authStyles.buttonContainer}>
-            <CustomButton
-              title="Enviar"
-              paddingVertical={10}
-              onPress={handleSubmit(changePassword)}
-              backgroundColor="#6DD98C"
-            />
-          </View>
-      </KeyboardAwareScrollView>
-    );
-  }
+        </>
+      }
+      </View>
+      <View style={authStyles.buttonContainer}>
+        <CustomButton
+         title={action == "email" ? "Cambiar correo" : "Cambiar contraseña"}
+         paddingVertical={10}
+         onPress={action == "email" ? handleSubmit(changeEmail) : handleSubmit(changePassword)}
+         backgroundColor="#6DD98C"
+        />
+      </View>
+    </KeyboardAwareScrollView>
+  );
 }
 
 const styles = StyleSheet.create({

@@ -17,6 +17,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 export default function Options({navigation}) {
 
     const user = firebase.auth().currentUser;
+    const provider = user.providerData[0].providerId;
 
     function signOut(){
       firebase.auth().signOut()
@@ -38,6 +39,7 @@ export default function Options({navigation}) {
                   innerInfo={user.email}
                 />
                 <View style={styles.linkSection}>
+                {provider == "password" ?
                   <CustomLink
                     title="Cambiar correo electrónico"
                     onPress={() => {
@@ -45,6 +47,7 @@ export default function Options({navigation}) {
                       }
                     }
                   />
+                  : null}
                 </View>
               </View>
               <View style={styles.subsection}>
@@ -60,16 +63,18 @@ export default function Options({navigation}) {
               <View style={styles.subsection}>
                 <ProfileSubsection
                   baseInfo="Contraseña"
-                  innerInfo="¿Olvidó su contraseña?"
+                  innerInfo={provider == "password" ? "**********************" : "Si desea cambiar su contraseña debe hacerlo desde su cuenta de Google"}
                 />
                 <View style={styles.linkSection}>
-                  <CustomLink
-                    title="Cambiar contraseña"
-                    onPress={() => {
-                        navigation.navigate('ChangeUserInfoForm', { action: "password" })
+                  {provider == "password" ?
+                    <CustomLink
+                      title="Cambiar contraseña"
+                      onPress={() => {
+                          navigation.navigate('ChangeUserInfoForm', { action: "password" })
+                        }
                       }
-                    }
-                  />
+                    />
+                    : null}
                 </View>
               </View>
               <View style={styles.subsection}>
@@ -87,15 +92,17 @@ export default function Options({navigation}) {
                 </View>
               </View>
               <View style={styles.subsection}>
-                <ProfileSubsection
-                  baseInfo="Eliminar cuenta"
-                  innerInfo={"Esta acción no se puede desahacer"}
-                />
+              <ProfileSubsection
+                baseInfo="Eliminar cuenta"
+                innerInfo={provider == "password" ? "Esta acción no se puede deshacer" : "Si desea eliminar su cuenta debe hacerlo desde su cuenta de Google"}
+              />
                 <View style={styles.linkSection}>
+                {provider == "password" ?
                   <CustomLink
                     title="Eliminar cuenta"
                     onPress={() => navigation.navigate('DeleteAccountForm')}
                   />
+                  : null}
                 </View>
               </View>
           </View>

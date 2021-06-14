@@ -1,14 +1,33 @@
+<<<<<<< HEAD
 import React, {useState} from 'react';
 import { View, ScrollView, Text, StyleSheet, Button, Pressable, Dimensions } from 'react-native';
 import { Icon } from 'react-native-elements'
+=======
+import React, {useState, useEffect} from 'react';
+import { View, Text, StyleSheet, Button, Dimensions } from 'react-native';
+
+import CardsCarousel from '../components/CardsCarousel';
+>>>>>>> 5916d68738e0622684f346e32329e2fe0c33c9fe
 
 //firebase
 import firebase from '../utils/Firebase';
 import 'firebase/auth';
 
 export default function Menu({navigation}) {
-    const user = firebase.auth().currentUser;
-    const [username, setUserName] = useState(user.displayName);
+    let user = firebase.auth().currentUser;
+    const [username, setUsername] = useState(user.displayName);
+
+    function getUserData(){
+     const timeout = setTimeout(() => {
+       user = firebase.auth().currentUser;
+       setUsername(user.displayName);
+     }, 250);
+    }
+
+     useEffect(() =>{
+       getUserData();
+     },[user, username])
+
     return (
         <View style={styles.menu}>
             <View style={styles.welcomeContainer}>
