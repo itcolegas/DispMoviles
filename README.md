@@ -19,12 +19,11 @@ La aplicación MOCKI permite a los usuarios:
 - Recibir retroalimentación por su trabajo.
 - Llevar un progreso de su estudio de problemas.
 
-## Diseño
+## Diseño inicial
 ![Alt text](https://github.com/itcolegas/DispMoviles/blob/main/images/1.png?raw=true "1")
 ![Alt text](https://github.com/itcolegas/DispMoviles/blob/main/images/2.png?raw=true "2")
 
-
-## Crear logo
+## Logo
 ![image](https://user-images.githubusercontent.com/31292773/109427664-0bdee600-79b9-11eb-8fb9-e3efded6a75a.png)
 
 
@@ -37,6 +36,38 @@ La aplicación MOCKI permite a los usuarios:
 - StyleSheet
 - MenuCarousel
 - React Native Chart Kit 
+
+
+## Elementos de arquitectura utilizados
+- Firebase
+- MongoDB
+- Backend: Express JS
+- Frontend: React Native
+
+## Prototipo funcional
+
+<p align="center">
+ 
+ El usuario puede crear una nueva cuenta con su mail o con una cuenta de google, e iniciar sesión.  <br />
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/FirstScreen.jpeg" width="250">
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/Login.jpeg" width="250">
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/Login2.jpeg" width="250">
+<br />Una vez que inicia sesión puede seleccionar varias opciones del menú: tips, progreso, entrevista, problemas y quiz. El usuario puede ver su información en el ícono superior derecho de su cuenta donde puede ver y modificar su mail y contraseña, de igual forma tiene la opción de eliminar su cuenta. La pantalla 'progress' refleja el progreso del usuario a lo largo del tiempo.  <br />
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/Home.jpeg" width="250">
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/MyInfo.jpeg" width="250">
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/MyProgress.jpeg" width="250">
+ <br /> En la pantalla de problemas el usuario puede ver y filtrar los problemas por categoria, cuando eliige uno se le muestra la dificultad, la redacción del problema y un ejemplo, y tiene la oportunidad de obtener una pista o abrir el problema en leetcode.<br />
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/Problems.jpeg" width="250">
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/Problem.jpeg" width="250">
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/Problem2.jpeg" width="250">
+ <br /> El usuario puede personalizar su cuenta eligiendo la fecha en la que va a tomar la entrevista y la compañía de su preferencia. En la pantalla tips puede leer varias recomendaciones de entrevistas creadas por usuarios que han asistido a entrevistas previas. <br />
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/Quiz.jpeg" width="250">
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/Tip.jpeg" width="250">
+<img src="https://github.com/itcolegas/DispMoviles/blob/main/images/Tips.jpeg" width="250">
+  <br /> El usuario puede simular una entrevista eligiendo la dificultad preferida. La applicación muestra un timer para que el usuario administre su tiempo correctamente. <br /> 
+ <img src="https://github.com/itcolegas/DispMoviles/blob/main/images/MockInterview.jpeg" width="250">
+ 
+ </p>
 
 # Project RoadMap
 
@@ -77,9 +108,9 @@ La aplicación MOCKI permite a los usuarios:
 | Side Menu | Delivery 6 |
 | Profile Viewer | Delivery 6 |
 
-- Delivery 4: *Week 6*
-- Delivery 5: *Week 7*
-- Delivery 6: *Week 8*
+- Delivery 4: *Week 6,7,8*
+- Delivery 5: *Week 9,10*
+- Delivery 6: *Week 11,12,13*
 
 By ITColegas ®
 
