@@ -22,17 +22,22 @@ const easy = {
   name: "Two Sum",
   category: "Array",
   difficulty: "easy",
+  description: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\nYou can return the answer in any order.\n\nExample 1:\nInput: nums = [2,7,11,15], target = 9\nOutput: [0,1]\nOutput: Because nums[0] + nums[1] == 9, we return [0, 1].",
+  hint: "A really brute force way would be to search for all possible pairs of numbers but that would be too slow. Again, it's best to try out brute force solutions for just for completeness. It is from these brute force solutions that you can come up with optimizations."
 };
 const medium = {
-  name: "ZigZag Conversion",
+  name: "Longest Palindromic Substring",
   category: "String",
   difficulty: "medium",
+  description: "Given a string s, return the longest palindromic substring in s.\n\nExample 1:\nInput: s = 'babad'\nOutput: 'bab'\nNote: 'aba' is also a valid answer.",
+  hint: "How can we reuse a previously computed palindrome to compute a larger palindrome?"
 };
 
 const hard = {
-  name: "Recover Binary Search Tree",
-  category: "Tree",
+  name: "Maximal Rectangle",
+  category: "Hash",
   difficulty: "hard",
+  description: "Given a rows x cols binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.\n\nExample 1:\nInput: matrix = [['1','0','1','0','0'],['1','0','1','1','1'],['1','1','1','1','1'],['1','0','0','1','0']]\nOutput: 6"
 };
 
 export default function MockInterview({ navigation }) {
