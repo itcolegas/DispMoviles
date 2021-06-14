@@ -2,9 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native';
 
 export default function MockProbelm({data}) {
-    const {name, category, difficulty} = data;
-    const content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper metus elementum sem consectetur, at aliquet enim condimentum. Nullam quam dolor, semper a sapien in, dignissim laoreet odio. Phasellus suscipit, nisi at scelerisque dignissim, massa dui iaculis mauris, id scelerisque felis ipsum a ligula.\n\nNullam lectus arcu, blandit ac ultricies in, interdum et turpis. Donec velit nibh, pulvinar non facilisis in, interdum non elit. Pellentesque facilisis, ante eget dictum bibendum, tortor massa accumsan felis, et sollicitudin justo massa eget massa. Aenean euismod arcu maximus leo feugiat facilisis. Nulla sit amet metus volutpat, convallis tortor a, efficitur nisl. Donec aliquam non leo eget consectetur';
-    const hint = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper metus elementum sem consectetur, at aliquet enim condimentum. Nullam quam dolor, semper a sapien in, dignissim laoreet odio.';
+    const {name, category, difficulty, description, hint} = data;
 
     const firstUpperCase = (str) => {
         return(`${str[0].toUpperCase()}${str.slice(1)}`)
@@ -18,9 +16,12 @@ export default function MockProbelm({data}) {
             </View>
             <View style={styles.contentContainer}>
                 <Text style={styles.content}>
-                    {content}
+                    {description}
                 </Text>
-                <Button title='Hint' onPress={() => alert(hint)}/>
+                {hint
+                ?<Button title='Hint' onPress={() => alert(hint)}/>
+                :null
+                }
             </View>
         </View>
     )
