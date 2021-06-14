@@ -99,7 +99,7 @@ export default function Options({navigation}) {
               </View>
               <View style={styles.subsection}>
               <ProfileSubsection
-                baseInfo="Contraseña"
+                baseInfo="Eliminar cuenta"
                 innerInfo={provider == "password" ? "Esta acción no se puede deshacer" : "Si desea eliminar su cuenta debe hacerlo desde su cuenta de Google"}
               />
                 <View style={styles.linkSection}>

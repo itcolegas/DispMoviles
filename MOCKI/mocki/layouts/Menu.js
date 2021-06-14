@@ -15,7 +15,7 @@ export default function Menu({navigation}) {
      const timeout = setTimeout(() => {
        user = firebase.auth().currentUser;
        setUsername(user.displayName);
-     }, 200);
+     }, 250);
     }
 
      useEffect(() =>{
