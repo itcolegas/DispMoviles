@@ -72,21 +72,28 @@ La aplicación MOCKI permite a los usuarios:
 # Project RoadMap
 
 ## Web Components
-- [ ] SignIn / LogIn: **Octavio**
-- [ ] Option Selector: **Rubén**
-- [ ] Image Option Selctor: **Cristopher**
-- [ ] Button: **Martin**
-- [ ] Menu Grid: **Martin**
-- [ ] Progress Graph: **Cristopher**
-- [ ] Problem View: **Sabrina**
-- [ ] Problem Slider: **Sabrina**
-- [ ] Dropdown Hints: **Cristopher**
-- [ ] Problem Gif Container: **Sabrina**
-- [ ] Header: **Martin**
-- [ ] Back Button: **Octavio**
-- [ ] Burger Button: **Rubén**
-- [ ] Side Menu: **Rubén**
-- [ ] Profile Viewer: **Octavio**
+- [x] SignIn / LogIn: **Octavio**
+- [x] Option Selector: **Rubén**
+- [x] Image Option Selctor: **Cristopher**
+- [x] Button: **Martin**
+- [x] Menu Grid: **Martin**
+- [x] Progress Graph: **Cristopher**
+- [x] Problem View: **Sabrina**
+- [x] Problem Slider: **Sabrina**
+- [x] Dropdown Hints: **Cristopher**
+- [x] Problem Gif Container: **Sabrina**
+- [x] Header: **Martin**
+- [x] Back Button: **Octavio**
+- [x] Burger Button: **Rubén**
+- [x] Side Menu: **Rubén**
+- [x] Profile Viewer: **Octavio**
+- [x] Quiz layout **Sabrina** 
+- [x] My Progress layout **Rubén** 
+- [x] Problems layout: **Cristopher**
+- [x] MyInfo layout: **Octavio**
+- [x] Tips layout **Sabrina**
+- [x] Mock Interview layout **Martin**
+- [x] Menu layout: **Cristopher and Rubén**
 
 ### Dates
 
@@ -107,10 +114,13 @@ La aplicación MOCKI permite a los usuarios:
 | Burger Button | Delivery 5 |
 | Side Menu | Delivery 6 |
 | Profile Viewer | Delivery 6 |
+| Layouts | Delivery 7 |
+
 
 - Delivery 4: *Week 6,7,8*
 - Delivery 5: *Week 9,10*
 - Delivery 6: *Week 11,12,13*
+- Delivery 7: *Week 14 to end*
 
 By ITColegas ®
 
