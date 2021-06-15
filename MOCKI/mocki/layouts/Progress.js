@@ -27,7 +27,7 @@ export default function Progress() {
     useEffect(() => {
         axios.get(api.api+"/get-userProgress/"+username)
         .then(res => {
-            console.log(res.data.users[0].problems)
+            //console.log(res.data.users[0].problems)
             let probNum = res.data.users[0].problems.length;
             setProgress(probNum/12);
             setProb(probNum);
